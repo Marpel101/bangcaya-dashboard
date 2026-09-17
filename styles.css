@@ -323,22 +323,6 @@
   .journey-row .jrole{font-size:11px;color:var(--ink-soft);margin-top:1px;}
   .journey-row .jtags{font-size:10.5px;color:var(--accent);font-weight:700;margin-top:3px;}
 
-  /* ---------------- status chip ---------------- */
-  .status-chip{
-    position:fixed;right:22px;bottom:22px;display:flex;align-items:center;gap:8px;background:var(--cta-bg);color:var(--cta-ink);
-    padding:8px 14px 8px 10px;border-radius:999px;font-size:12px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.18);
-    z-index:5;
-    /* This little badge floats in place while you scroll. It isn't a
-       button (nothing happens if you tap it), so "pointer-events:none"
-       lets taps/clicks pass straight through it to whatever is
-       underneath -- it never blocks a link or button it happens to
-       be floating over. */
-    pointer-events:none;
-  }
-  .status-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:statusPulse 2s ease-out infinite;}
-  @media (prefers-reduced-motion: reduce){.status-dot{animation:none;}}
-  @keyframes statusPulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55);}70%{box-shadow:0 0 0 8px rgba(74,222,128,0);}100%{box-shadow:0 0 0 0 rgba(74,222,128,0);}}
-
   /* =====================================================================
      DEDICATED PAGES
      ---------------------------------------------------------------------
@@ -529,5 +513,4 @@
     .bcard.credentials{grid-row:4;} .bcard.services{grid-row:5;} .bcard.journey{grid-row:6;}
     .ticker-card{flex-direction:column;align-items:flex-start;gap:10px;}
     .ticker-label{border-right:none;padding-right:0;}
-    .status-chip{right:14px;bottom:14px;padding:7px 12px 7px 9px;font-size:11px;}
   }
