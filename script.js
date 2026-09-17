@@ -136,6 +136,72 @@
 })();
 
 /* -----------------------------------------------------------------------
+   PART 2.5: Keep the floating "Get in touch" button from ever sitting
+   on top of other clickable content
+   -----------------------------------------------------------------------
+   The button is deliberately fixed to the same bottom-right corner on
+   every page, so it stays put while a page scrolls. That's fine when
+   there's empty space under it, but real content can end up landing in
+   that exact spot -- the Contact page's email/social list on narrow
+   screens, or a bento card's "View all" link at certain widths on the
+   Home page -- and a fixed element sitting on top of a link both looks
+   wrong and makes that link unclickable.
+
+   Rather than hand-tune spacing for every page and screen size (fragile,
+   and it'll break again the next time content changes), this checks
+   what's actually near the button on every scroll/resize: if another
+   visible link or button in the current page overlaps its rectangle,
+   the floating button fades out and stops accepting clicks until that's
+   no longer true. Nothing below it is ever actually covered.
+   ----------------------------------------------------------------------- */
+(function(){
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.get-touch'));
+  if (!buttons.length) return;
+
+  function rectsOverlap(a, b){
+    return !(a.bottom <= b.top || b.bottom <= a.top || a.right <= b.left || b.right <= a.left);
+  }
+
+  function checkButton(btn){
+    var style = getComputedStyle(btn);
+    if (style.display === 'none') return; // its page isn't the active one
+    var btnRect = btn.getBoundingClientRect();
+    if (btnRect.width === 0 || btnRect.height === 0) return;
+
+    var view = btn.closest('.view');
+    if (!view) return;
+    var candidates = view.querySelectorAll('a, button');
+    var blocked = false;
+    for (var i = 0; i < candidates.length; i++){
+      var el = candidates[i];
+      if (el === btn || btn.contains(el)) continue;
+      var elStyle = getComputedStyle(el);
+      if (elStyle.display === 'none' || elStyle.visibility === 'hidden' || parseFloat(elStyle.opacity) < 0.05) continue;
+      var r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) continue;
+      if (rectsOverlap(btnRect, r)){ blocked = true; break; }
+    }
+    btn.classList.toggle('gt-hide', blocked);
+  }
+
+  var ticking = false;
+  function checkAll(){
+    ticking = false;
+    buttons.forEach(checkButton);
+  }
+  function onScrollOrResize(){
+    if (!ticking){ ticking = true; requestAnimationFrame(checkAll); }
+  }
+  window.addEventListener('scroll', onScrollOrResize, {passive:true});
+  window.addEventListener('resize', onScrollOrResize);
+  // re-run right after any page switch, since the newly-shown view's
+  // layout (and which button is visible) can change without a scroll
+  // or resize event firing on its own
+  document.addEventListener('click', onScrollOrResize, true);
+  checkAll();
+})();
+
+/* -----------------------------------------------------------------------
    PART 3: Light / dark mode button
    -----------------------------------------------------------------------
    The page already opens in dark mode by default (see the small script

@@ -178,7 +178,7 @@
     display:inline-flex;align-items:center;gap:6px;background:var(--cta-bg);color:var(--cta-ink);
     padding:10px 18px;border-radius:999px;font-weight:700;font-size:13.5px;text-decoration:none;
     box-shadow:0 10px 24px rgba(0,0,0,.22);
-    transition:transform .2s ease, box-shadow .2s ease;flex:none;
+    transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;flex:none;
   }
   .get-touch:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.28);}
   .get-touch svg{width:13px;height:13px;}
@@ -503,6 +503,13 @@
     .signal-dot{display:none;}
   }
   @media (max-width:680px){.contact-grid{grid-template-columns:1fr;}}
+  /* script.js watches every page for a moment where the floating
+     "Get in touch" button's fixed corner would land on top of another
+     link or button (the Contact page's email/social list on narrow
+     screens, a bento card's "View all" link at certain widths, etc.)
+     and adds this class for as long as that's true, so the button
+     steps aside instead of covering -- and blocking -- real content. */
+  .get-touch.gt-hide{opacity:0;pointer-events:none;}
 
   @media (max-width:900px){
     .skills-page-grid{grid-template-columns:1fr 1fr;}
