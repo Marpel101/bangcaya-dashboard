@@ -544,6 +544,7 @@
     .bcard.journey{grid-column:1/3;grid-row:4;}
     h1.hero-head{font-size:32px;}
     .eyebrow-break{display:block;}
+    .eyebrow-sep{display:none;}
     /* Same floating "Get in touch" button as desktop (see the base
        .get-touch rule above), just pulled in a bit closer to the
        corner on the smaller screen. */
@@ -560,4 +561,14 @@
     .bcard.credentials{grid-row:4;} .bcard.services{grid-row:5;} .bcard.journey{grid-row:6;}
     .ticker-card{flex-direction:column;align-items:flex-start;gap:10px;}
     .ticker-label{border-right:none;padding-right:0;}
+    /* .ticker-view's "flex:1 1 0;width:0" (set higher up in this file)
+       only makes sense in the desktop side-by-side ROW layout, where
+       it's what lets flexbox correctly hand it the remaining space
+       next to the label. Once .ticker-card switches to a stacked
+       COLUMN just above, "flex:1 1 0" instead zeroes out its HEIGHT
+       (flex-basis applies to whichever direction is now the main
+       axis), collapsing the whole scrolling tool ticker to nothing --
+       invisible and effectively "not working". Turning flex off and
+       giving it back a real width fixes both problems at once. */
+    .ticker-view{width:100%;flex:none;}
   }
