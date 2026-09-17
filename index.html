@@ -444,8 +444,8 @@
     .side-foot{display:none;}
     .main{padding:24px 18px 80px;min-height:0;justify-content:flex-start;}
     .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;}
-    .bcard.projects{grid-column:1/3;grid-row:1;}
-    .bcard.about{grid-column:1;grid-row:2;}
+    .bcard.about{grid-column:1/3;grid-row:1;}
+    .bcard.projects{grid-column:1;grid-row:2;}
     .bcard.builds{grid-column:2;grid-row:2;}
     .bcard.credentials{grid-column:1;grid-row:3;}
     .bcard.services{grid-column:2;grid-row:3;}
@@ -455,7 +455,7 @@
   @media (max-width:480px){
     .bento{grid-template-columns:1fr;}
     .bcard.projects,.bcard.about,.bcard.builds,.bcard.credentials,.bcard.services,.bcard.journey{grid-column:1;}
-    .bcard.projects{grid-row:1;} .bcard.about{grid-row:2;} .bcard.builds{grid-row:3;}
+    .bcard.about{grid-row:1;} .bcard.projects{grid-row:2;} .bcard.builds{grid-row:3;}
     .bcard.credentials{grid-row:4;} .bcard.services{grid-row:5;} .bcard.journey{grid-row:6;}
     .ticker-card{flex-direction:column;align-items:flex-start;gap:10px;}
     .ticker-label{border-right:none;padding-right:0;}
