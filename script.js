@@ -57,7 +57,17 @@
     });
   }
   var track = document.getElementById('tickerTrack');
-  if (track) track.innerHTML = frag;
+  if (track) {
+    track.innerHTML = frag;
+    // The scroll speed (see .ticker-track in styles.css) was originally
+    // tuned as a flat 22s for a 13-tool list. As more tools were added
+    // the ticker kept that same fixed duration but had to cover a much
+    // longer track in the same time, so it visibly sped up. Scaling the
+    // duration to the tool count keeps a steady, readable pace (how
+    // long each name stays on screen) no matter how long the list gets.
+    var secondsPerTool = 1.7;
+    track.style.animationDuration = Math.round(tools.length * secondsPerTool) + 's';
+  }
 })();
 
 /* -----------------------------------------------------------------------
