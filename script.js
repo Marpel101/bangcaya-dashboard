@@ -88,12 +88,21 @@
     if (name === 'skills') animateSkillMeters();
   }
 
+  var sidebarEl = document.querySelector('.sidebar');
+
   navLinks.forEach(function(a){
     a.addEventListener('click', function(e){
       var name = a.getAttribute('data-view');
       if (!name) return;
       e.preventDefault();
       showView(name);
+      // on the phone/tablet hamburger layout, picking a page should
+      // also close the menu drawer so you land straight on the page
+      if (sidebarEl && a.closest('.side-nav')) {
+        sidebarEl.classList.remove('nav-open');
+        var menuBtn = document.getElementById('menuToggle');
+        if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   });
 
@@ -137,5 +146,26 @@
 
   btn.addEventListener('click', function(){
     apply(currentMode() === 'dark' ? 'light' : 'dark');
+  });
+})();
+
+/* -----------------------------------------------------------------------
+   PART 4: Hamburger menu (tablet/phone only)
+   -----------------------------------------------------------------------
+   On the full desktop sidebar the page links are always visible, so
+   this button is hidden and does nothing (see styles.css). On the
+   narrower top-bar layout, tapping it shows/hides the drawer of page
+   links and social icons by adding or removing one class, "nav-open",
+   on the sidebar -- every drawer style in styles.css just checks for
+   that class.
+   ----------------------------------------------------------------------- */
+(function(){
+  var menuBtn = document.getElementById('menuToggle');
+  var sidebar = document.querySelector('.sidebar');
+  if (!menuBtn || !sidebar) return;
+
+  menuBtn.addEventListener('click', function(){
+    var isOpen = sidebar.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 })();

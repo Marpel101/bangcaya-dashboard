@@ -129,10 +129,20 @@
     position:relative;margin-top:auto;width:100%;height:36px;border-radius:999px;background:var(--chip-bg);
     border:1px solid var(--panel-border);cursor:pointer;padding:3px;display:flex;align-items:center;flex:none;
   }
+  /* Hamburger button -- hidden here on the full desktop sidebar (the nav
+     is already visible there, so there's nothing to reveal). It only
+     switches on inside the max-width:900px rule below. */
+  .menu-toggle{display:none;background:var(--chip-bg);border:1px solid var(--panel-border);border-radius:50%;cursor:pointer;color:var(--ink);}
+  .menu-icon-close{display:none;}
   .tt-opt{
-    flex:1;position:relative;z-index:1;text-align:center;font-size:11.5px;font-weight:700;color:var(--ink-mute);
+    flex:1;position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:4px;
+    font-size:11.5px;font-weight:700;color:var(--ink-mute);
     transition:color .25s ease;pointer-events:none;
   }
+  /* The icon is only for the narrow top-bar layout (see the max-width:900px
+     rule further down) -- on the full desktop sidebar there's room to just
+     spell out "Light"/"Dark", so the icon stays hidden there. */
+  .tt-icon{display:none;width:13px;height:13px;flex:none;}
   .tt-thumb{
     position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;
     background:var(--accent);transition:transform .25s cubic-bezier(.4,0,.2,1);z-index:0;transform:translateX(0);
@@ -467,21 +477,53 @@
      used to make everything look cramped and hard to tap on a phone. */
   @media (max-width:900px){
     .shell{flex-direction:column;align-items:stretch;}
-    .sidebar{width:100%;position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:18px 22px;gap:12px 16px;border-bottom:1px solid var(--line);}
-    .avatar-wrap{width:50px;height:50px;margin-bottom:0;}
-    .verified{width:19px;height:19px;border-width:2px;}
+    .sidebar{width:100%;position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:16px clamp(16px,4vw,22px);gap:12px 16px;border-bottom:1px solid var(--line);}
+    /* clamp(min, scales-with-screen-width, max) -- these sizes are not
+       fixed numbers. They grow and shrink smoothly with the browser's
+       actual width between the min and max, so the photo and text stay
+       nice and readable whether this is a big tablet or a small phone,
+       instead of suddenly jumping smaller at one exact width. */
+    .avatar-wrap{width:clamp(46px,12vw,52px);height:clamp(46px,12vw,52px);margin-bottom:0;}
+    .verified{width:clamp(17px,4.5vw,19px);height:clamp(17px,4.5vw,19px);border-width:2px;}
     .verified svg{width:10px;height:10px;}
-    .name-row{font-size:16.5px;}
+    .name-row{font-size:clamp(15px,4vw,16.5px);}
     .handle{display:none;}
-    .theme-toggle{width:132px;min-width:132px;height:36px;margin:0 0 0 auto;order:1;flex:none;}
-    .side-socials{margin:0 0 0 auto;order:2;gap:8px;}
-    .side-socials a{width:34px;height:34px;}
-    .side-socials svg{width:16px;height:16px;}
-    /* Nav links get their own full-width row underneath, spaced out
-       as clear, evenly-sized pills instead of a tight inline list. */
-    nav.side-nav{order:3;width:100%;flex-direction:row;flex-wrap:wrap;gap:8px;margin-top:6px;}
-    .side-nav a{padding:9px 15px;font-size:13.5px;border:1px solid var(--panel-border);}
-    .side-nav a svg{width:16px;height:16px;}
+    /* Swap the "Light"/"Dark" words for just the sun/moon icons here --
+       the top bar is tight on width, and an icon reads just as clearly
+       as the word while taking a fraction of the space. */
+    .theme-toggle{width:clamp(56px,14vw,64px);min-width:56px;height:clamp(30px,7.5vw,34px);margin:0 0 0 auto;order:1;flex:none;}
+    .tt-icon{display:block;}
+    .tt-label{display:none;}
+
+    /* The hamburger button sits right next to the theme toggle. Tapping
+       it adds/removes "nav-open" on the sidebar -- see PART 4 in
+       script.js -- which is the only thing that decides whether the
+       drawer below (nav links + social icons) is shown or hidden. */
+    .menu-toggle{
+      display:flex;align-items:center;justify-content:center;order:2;flex:none;
+      width:clamp(30px,7.5vw,34px);height:clamp(30px,7.5vw,34px);
+    }
+    .menu-icon-bars,.menu-icon-close{width:16px;height:16px;}
+    .sidebar.nav-open .menu-icon-bars{display:none;}
+    .sidebar.nav-open .menu-icon-close{display:block;}
+
+    /* Collapsed by default: this is the "drawer" a hamburger menu reveals.
+       It holds the page links and, below them, the social icons -- moved
+       out of the cramped top row entirely, the way most sites tuck extra
+       links away on a small screen instead of cramming them all in. */
+    nav.side-nav{display:none;order:4;width:100%;margin-top:14px;gap:4px;}
+    .sidebar.nav-open nav.side-nav{display:flex;}
+    .side-nav a{padding:12px 14px;font-size:14.5px;border-radius:12px;}
+    .side-nav a svg{width:17px;height:17px;}
+
+    .side-socials{
+      display:none;order:5;width:100%;justify-content:center;gap:16px;
+      margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line);
+    }
+    .sidebar.nav-open .side-socials{display:flex;}
+    .side-socials a{width:36px;height:36px;}
+    .side-socials svg{width:17px;height:17px;}
+
     .side-foot{display:none;}
     .main{padding:24px 18px 80px;min-height:0;justify-content:flex-start;}
     .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;}
@@ -494,19 +536,10 @@
     h1.hero-head{font-size:32px;}
   }
   @media (max-width:480px){
-    /* Phone-width top bar: still roomy, just slightly tighter than the
-       tablet sizing above so nothing crowds the edge of a small screen. */
-    .sidebar{padding:16px 18px;gap:10px 14px;}
-    .avatar-wrap{width:42px;height:42px;}
-    .verified{width:16px;height:16px;}
-    .verified svg{width:9px;height:9px;}
-    .name-row{font-size:14.5px;}
-    .theme-toggle{width:112px;min-width:112px;height:32px;}
-    .tt-opt{font-size:10.5px;}
-    .side-socials a{width:30px;height:30px;}
-    .side-socials svg{width:14px;height:14px;}
-    .side-nav a{padding:8px 12px;font-size:12.5px;gap:7px;}
-    .side-nav a svg{width:14px;height:14px;}
+    /* The header sizes above already scale themselves down smoothly for
+       small screens (see the clamp() comment), so nothing needs to be
+       repeated here. This breakpoint just restacks the home-page cards
+       into a single column, which is a layout change, not a size one. */
     .bento{grid-template-columns:1fr;}
     .bcard.projects,.bcard.about,.bcard.builds,.bcard.credentials,.bcard.services,.bcard.journey{grid-column:1;}
     .bcard.about{grid-row:1;} .bcard.projects{grid-row:2;} .bcard.builds{grid-row:3;}

@@ -59,7 +59,12 @@
       <a href="https://www.facebook.com/share/1Bpcc3f3BY/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.2h2.4l.36-2.8h-2.76V9.2c0-.81.22-1.36 1.39-1.36h1.48V5.34C15.97 5.24 15.11 5.2 14.1 5.2c-2.11 0-3.55 1.29-3.55 3.65v2.15H8.14v2.8h2.41V21h2.95Z"/></svg></a>
       <a href="https://www.instagram.com/xio_41302" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.1" cy="6.9" r=".9" fill="currentColor" stroke="none"/></svg></a>
     </div>
-    <nav class="side-nav">
+    <!-- On the tablet/phone top-bar layout, this list (plus the social
+         icons below) is tucked away behind the hamburger button and only
+         shows once it's tapped -- see .menu-toggle further down and the
+         "PART 4" comment in script.js. On the full desktop sidebar it's
+         just always visible, like normal. -->
+    <nav class="side-nav" id="side-nav">
       <a href="#home" data-view="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9.5a1 1 0 0 0 1 1h3.5v-6h3v6H17a1 1 0 0 0 1-1V10"/></svg>Home</a>
       <a href="#projects" data-view="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 7.5a1 1 0 0 1 1-1H9l1.6 2h9a1 1 0 0 1 1 1v8.5a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1V7.5Z"/></svg>Projects</a>
       <a href="#skills" data-view="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M17.8 6.2l-1.5 1.5M7.7 16.3l-1.5 1.5M17.8 17.8l-1.5-1.5M7.7 7.7 6.2 6.2"/></svg>Skills</a>
@@ -67,10 +72,31 @@
       <a href="#about" data-view="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>About</a>
       <a href="#contact" data-view="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 2"/></svg>Contact</a>
     </nav>
+    <!-- The light/dark switch shows the word "Light"/"Dark" when there's
+         room (the full sidebar), and shrinks down to just a sun/moon icon
+         on the top-bar layout used on tablet and phone, where every pixel
+         of width matters. Both the word and the icon are always in the
+         page -- styles.css just shows one or the other depending on
+         screen size. -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" type="button">
-      <span class="tt-opt" data-mode="light">Light</span>
-      <span class="tt-opt" data-mode="dark">Dark</span>
+      <span class="tt-opt" data-mode="light">
+        <svg class="tt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <span class="tt-label">Light</span>
+      </span>
+      <span class="tt-opt" data-mode="dark">
+        <svg class="tt-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8Z"/></svg>
+        <span class="tt-label">Dark</span>
+      </span>
       <span class="tt-thumb"></span>
+    </button>
+    <!-- Hamburger button: only appears on the tablet/phone top-bar layout
+         (hidden completely on the full desktop sidebar, where the nav is
+         already visible). Tapping it opens the drawer holding the page
+         links and social icons -- the standard mobile pattern for a menu
+         with more links than comfortably fit in one row. -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav" type="button">
+      <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="menu-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
     <div class="side-foot">
       <img src="images/marpel-mar-bangcaya.jpg" alt="Marpel Mar Bangcaya">
