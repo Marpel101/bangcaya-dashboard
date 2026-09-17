@@ -273,7 +273,16 @@
     flex:1;display:flex;align-items:center;justify-content:center;min-height:110px;
   }
   .about-fig svg{width:100%;height:auto;max-width:150px;}
-  .about-fig img{width:auto;height:auto;max-width:158px;max-height:158px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(20,20,10,.22));}
+  .about-fig img{width:auto;height:auto;max-width:186px;max-height:186px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(20,20,10,.22));}
+  /* The About card's photo is bigger than it used to be. These three
+     rules only apply inside the About card (not the other bento cards)
+     and trim a few px of its own spacing so the bigger photo fits in
+     the same card height instead of pushing the Projects/Builds cards
+     next to it taller too. */
+  .bcard.about .bcard-head{margin-bottom:4px;}
+  .bcard.about .bcard-desc{margin-bottom:6px;}
+  .bcard.about .chip-row{gap:5px;}
+  .bcard.about .chip-row .chip{font-size:10.5px;padding:4px 8px 4px 5px;}
 
   .chip-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;}
   .chip-row .chip{
@@ -437,6 +446,23 @@
     background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:26px;
     box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;gap:16px;
   }
+  /* .chip-row normally has margin-top:auto so it pins to the bottom of
+     a bento card (see the About card higher up). .contact-main is also
+     a flex column, so without this override that same rule would grab
+     all of the card's extra height and shove the chips (and the note
+     under them) down, leaving a large empty gap under the email
+     address -- that's not wanted here, so it's turned back off. */
+  .contact-main .chip-row{margin-top:0;}
+  /* A normal inline button instead of the site's floating/fixed
+     "Get in touch" style -- you're already on the Contact page, so a
+     second floating copy of the same call-to-action was redundant. */
+  .contact-email-cta{
+    display:inline-flex;align-items:center;gap:6px;background:var(--cta-bg);color:var(--cta-ink);
+    padding:10px 18px;border-radius:999px;font-weight:700;font-size:13.5px;text-decoration:none;
+    box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .contact-email-cta:hover{transform:translateY(-2px);}
+  .contact-email-cta svg{width:13px;height:13px;}
   .contact-email{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);}
   .contact-note{font-size:12.5px;color:var(--ink-mute);line-height:1.5;}
   .contact-channels{display:flex;flex-direction:column;gap:2px;background:var(--panel-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
@@ -452,7 +478,42 @@
   .contact-row-name{font-size:13.5px;font-weight:700;}
   .contact-row-handle{font-size:11.5px;color:var(--ink-mute);}
   .contact-row-arrow{width:15px;height:15px;color:var(--ink-mute);flex:none;opacity:0;transform:translate(-3px,3px);transition:opacity .2s ease,transform .2s ease;}
+
+  /* A small "message in transit" animation that fills the empty space
+     under the contact card/channel list: a signal pulses out of the
+     envelope, a dot travels the line to the pin, and the pin gives a
+     quiet reply-received pulse -- all plain SVG + CSS, no image file. */
+  .contact-signal{
+    max-width:780px;margin-top:22px;background:var(--panel);border:1px solid var(--panel-border);
+    border-radius:16px;padding:22px 26px 18px;box-shadow:var(--shadow);
+  }
+  .signal-svg{width:100%;height:auto;max-height:170px;display:block;overflow:visible;color:var(--ink-soft);}
+  .signal-path{stroke:var(--panel-border);stroke-width:2;stroke-dasharray:1 9;stroke-linecap:round;}
+  .signal-envelope{color:var(--accent);}
+  .signal-pulse-ring{fill:none;stroke:var(--accent);stroke-width:1.6;opacity:0;transform-origin:74px 95px;animation:signalRing 3.2s ease-out infinite;}
+  .signal-pulse-ring.r2{animation-delay:1.06s;}
+  .signal-pulse-ring.r3{animation-delay:2.13s;}
+  @keyframes signalRing{
+    0%{opacity:.55;transform:scale(.4);}
+    100%{opacity:0;transform:scale(1.7);}
+  }
+  .signal-dot{fill:var(--accent);filter:drop-shadow(0 0 4px var(--accent));}
+  .signal-pin circle{fill:var(--accent);}
+  .signal-pin path{stroke:var(--accent-ink);}
+  .signal-pin{animation:signalPinPulse 3.2s ease-in-out infinite;transform-origin:566px 95px;}
+  @keyframes signalPinPulse{
+    0%,73%{transform:scale(1);}
+    80%{transform:scale(1.22);}
+    88%,100%{transform:scale(1);}
+  }
+  .signal-caption{margin-top:10px;font-size:12.5px;color:var(--ink-mute);text-align:center;}
+  @media (prefers-reduced-motion: reduce){
+    .signal-pulse-ring{animation:none;opacity:0;}
+    .signal-pin{animation:none;}
+    .signal-dot{display:none;}
+  }
   @media (max-width:680px){.contact-grid{grid-template-columns:1fr;}}
+  @media (max-width:520px){.contact-signal{padding:18px 16px 14px;}}
 
   @media (max-width:900px){
     .skills-page-grid{grid-template-columns:1fr 1fr;}
@@ -472,7 +533,7 @@
     .ticker-card{padding:8px 20px;margin-bottom:8px;}
     .bcard{padding:12px 16px;}
     .about-fig{min-height:80px;}
-    .about-fig img{max-width:118px;max-height:118px;}
+    .about-fig img{max-width:140px;max-height:140px;}
     .proj-thumb{min-height:100px;}
     .cred-stack{min-height:120px;}
   }
