@@ -166,12 +166,21 @@
   .main{flex:1;min-width:0;min-height:100vh;padding:22px 32px 22px;display:flex;flex-direction:column;justify-content:flex-start;}
   .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--ink-mute);text-transform:uppercase;}
+  /* Hidden by default (desktop: the eyebrow text fits on one line) --
+     switched on for the mobile layout in the max-width:900px rule
+     further down, so the line only breaks there, at a clean point. */
+  .eyebrow-break{display:none;}
+  /* "Get in touch" floats in the bottom-right corner and stays there as
+     the Home page scrolls -- on desktop and mobile alike -- instead of
+     scrolling away with the hero section like an ordinary in-page link. */
   .get-touch{
+    position:fixed;right:28px;bottom:calc(28px + env(safe-area-inset-bottom,0px));z-index:6;
     display:inline-flex;align-items:center;gap:6px;background:var(--cta-bg);color:var(--cta-ink);
     padding:10px 18px;border-radius:999px;font-weight:700;font-size:13.5px;text-decoration:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.22);
     transition:transform .2s ease, box-shadow .2s ease;flex:none;
   }
-  .get-touch:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.15);}
+  .get-touch:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.28);}
   .get-touch svg{width:13px;height:13px;}
 
   h1.hero-head{
@@ -534,6 +543,11 @@
     .bcard.services{grid-column:2;grid-row:3;}
     .bcard.journey{grid-column:1/3;grid-row:4;}
     h1.hero-head{font-size:32px;}
+    .eyebrow-break{display:block;}
+    /* Same floating "Get in touch" button as desktop (see the base
+       .get-touch rule above), just pulled in a bit closer to the
+       corner on the smaller screen. */
+    .get-touch{right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));}
   }
   @media (max-width:480px){
     /* The header sizes above already scale themselves down smoothly for

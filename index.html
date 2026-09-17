@@ -112,7 +112,12 @@
          Journey). Each preview card links to its own full view below. -->
     <div class="view" id="view-home">
     <div class="hero-top">
-      <div class="eyebrow">4th Engineer · Merchant Marine · BS Computer Engineering — In Progress</div>
+      <!-- The <br class="eyebrow-break"> is invisible on desktop (one
+           line, plenty of room) and only turns into a real line break
+           on the narrow mobile layout, so the text always splits at a
+           clean point ("...Marine" / "BS Computer...") instead of
+           wrapping wherever happens to run out of space. -->
+      <div class="eyebrow">4th Engineer · Merchant Marine ·<br class="eyebrow-break"> BS Computer Engineering — In Progress</div>
       <a class="get-touch" href="#contact" data-view="contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </div>
     <h1 class="hero-head">Systems that watch over the people who watch the systems.</h1>
