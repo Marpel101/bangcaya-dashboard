@@ -1,21 +1,8 @@
 <!--
-  ============================================================
-  index.html — Bangcaya Dashboard (portfolio site)
-  ------------------------------------------------------------
-  This is the main page. Think of a website as 3 separate jobs:
-
-    1. index.html  -> WHAT is on the page (text, images, buttons)
-    2. styles.css   -> HOW it looks (colors, spacing, fonts)
-    3. script.js    -> WHAT HAPPENS when you click things
-
-  This file only handles job #1. Open styles.css to change colors
-  or spacing, and script.js to change behavior (like the dark
-  mode button or switching between Home/Projects/Credentials).
-
-  Folders:
-    images/   -> every picture used on the page (profile photo,
-                 certificate scans, project illustration)
-  ============================================================
+  index.html - my portfolio site (Bangcaya Dashboard)
+  Just the markup/content here. styles.css has all the colors
+  and spacing, script.js handles the page switching + dark mode.
+  images/ has the profile pic, cert scans, project pic etc.
 -->
 <!doctype html>
 <html>
@@ -23,12 +10,7 @@
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <!--
-    This tiny script has to run FIRST, before anything else, so the
-    site opens in dark mode by default (unless someone already chose
-    "light" before). If we waited and did this in script.js instead,
-    the page would flash white for a split second every time it opens.
-  -->
+  <!-- has to run before anything else loads or the page flashes white for a sec before dark mode kicks in -->
   <script>(function(){try{var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme', s==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 
   <title>Bangcaya Dashboard</title>
@@ -59,25 +41,16 @@
       <a href="https://www.facebook.com/share/1Bpcc3f3BY/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.2h2.4l.36-2.8h-2.76V9.2c0-.81.22-1.36 1.39-1.36h1.48V5.34C15.97 5.24 15.11 5.2 14.1 5.2c-2.11 0-3.55 1.29-3.55 3.65v2.15H8.14v2.8h2.41V21h2.95Z"/></svg></a>
       <a href="https://www.instagram.com/xio_41302" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.1" cy="6.9" r=".9" fill="currentColor" stroke="none"/></svg></a>
     </div>
-    <!-- On the tablet/phone top-bar layout, this list (plus the social
-         icons below) is tucked away behind the hamburger button and only
-         shows once it's tapped -- see .menu-toggle further down and the
-         "PART 4" comment in script.js. On the full desktop sidebar it's
-         just always visible, like normal. -->
+    <!-- on mobile this whole list hides behind the hamburger button, see .menu-toggle below / script.js PART 4 -->
     <nav class="side-nav" id="side-nav">
       <a href="#home" data-view="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9.5a1 1 0 0 0 1 1h3.5v-6h3v6H17a1 1 0 0 0 1-1V10"/></svg>Home</a>
+      <a href="#about" data-view="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>About</a>
       <a href="#projects" data-view="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 7.5a1 1 0 0 1 1-1H9l1.6 2h9a1 1 0 0 1 1 1v8.5a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1V7.5Z"/></svg>Projects</a>
       <a href="#skills" data-view="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M17.8 6.2l-1.5 1.5M7.7 16.3l-1.5 1.5M17.8 17.8l-1.5-1.5M7.7 7.7 6.2 6.2"/></svg>Skills</a>
       <a href="#credentials" data-view="credentials"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg>Credentials</a>
-      <a href="#about" data-view="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>About</a>
       <a href="#contact" data-view="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 2"/></svg>Contact</a>
     </nav>
-    <!-- The light/dark switch shows the word "Light"/"Dark" when there's
-         room (the full sidebar), and shrinks down to just a sun/moon icon
-         on the top-bar layout used on tablet and phone, where every pixel
-         of width matters. Both the word and the icon are always in the
-         page -- styles.css just shows one or the other depending on
-         screen size. -->
+    <!-- shows "Light/Dark" text on desktop, just the icon on mobile (styles.css handles the swap) -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" type="button">
       <span class="tt-opt" data-mode="light">
         <svg class="tt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
@@ -89,11 +62,7 @@
       </span>
       <span class="tt-thumb"></span>
     </button>
-    <!-- Hamburger button: only appears on the tablet/phone top-bar layout
-         (hidden completely on the full desktop sidebar, where the nav is
-         already visible). Tapping it opens the drawer holding the page
-         links and social icons -- the standard mobile pattern for a menu
-         with more links than comfortably fit in one row. -->
+    <!-- hamburger, mobile/tablet only -- opens the drawer with the nav links + socials -->
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav" type="button">
       <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       <svg class="menu-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -106,22 +75,10 @@
 
   <main class="main">
 
-    <!-- ============ HOME PAGE ============
-         Shown first. Has the intro headline and the 6 small preview
-         cards (About / Projects / Coursework / Credentials / Skills /
-         Journey). Each preview card links to its own full view below. -->
+    <!-- ============ HOME PAGE ============ -->
     <div class="view" id="view-home">
     <div class="hero-top">
-      <!-- The <br class="eyebrow-break"> is invisible on desktop (one
-           line, plenty of room) and only turns into a real line break
-           on the narrow mobile layout, so the text always splits at a
-           clean point ("...Marine" / "BS Computer...") instead of
-           wrapping wherever happens to run out of space. The "·"
-           inside <span class="eyebrow-sep"> is the opposite: it's
-           needed on desktop to separate "Marine" and "BS Computer" on
-           one line, but once mobile breaks them onto two lines it's
-           redundant (the line break itself already separates them),
-           so that span disappears right along with it. -->
+      <!-- eyebrow-break forces a clean line split on mobile instead of a random wrap; eyebrow-sep is the dot separator, hidden on mobile since the line break does that job instead -->
       <div class="eyebrow">4th Engineer · Merchant Marine<span class="eyebrow-sep"> ·</span><br class="eyebrow-break"> BS Computer Engineering — In Progress</div>
       <a class="get-touch" href="#contact" data-view="contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </div>
@@ -256,10 +213,7 @@
     </div>
     </div>
 
-    <!-- ============ PROJECTS PAGE ============
-         hidden = this view starts out invisible. script.js shows/hides
-         each ".view" div when you click a sidebar link (Home, Projects,
-         Skills, Credentials, About, Contact). -->
+    <!-- ============ PROJECTS PAGE ============ (hidden attr = starts off invisible, script.js toggles it on nav click) -->
     <div class="view" id="view-projects" hidden>
       <div class="page-head">
         <div class="eyebrow">Projects</div>
@@ -328,29 +282,29 @@
       </div>
       <div class="skills-page-grid">
         <div class="skill-page-col">
-          <div class="skill-page-head"><span class="eyebrow">Programming &amp; logic</span><span class="skill-pct-tag">85%</span></div>
-          <div class="skill-page-meter"><span style="width:85%;"></span></div>
+          <div class="skill-page-head"><span class="eyebrow">Programming &amp; logic</span><span class="skill-pct-tag">84%</span></div>
+          <div class="skill-page-meter"><span style="width:84%;"></span></div>
           <div class="chip-row">
             <span class="chip">Python</span><span class="chip">Flowgorithm</span><span class="chip">Algorithms</span><span class="chip">Number systems</span><span class="chip">Stacks</span>
           </div>
         </div>
         <div class="skill-page-col">
-          <div class="skill-page-head"><span class="eyebrow">Engineering &amp; systems</span><span class="skill-pct-tag">95%</span></div>
-          <div class="skill-page-meter"><span style="width:95%;"></span></div>
+          <div class="skill-page-head"><span class="eyebrow">Engineering &amp; systems</span><span class="skill-pct-tag">82%</span></div>
+          <div class="skill-page-meter"><span style="width:82%;"></span></div>
           <div class="chip-row">
             <span class="chip">Marine propulsion</span><span class="chip">Watchkeeping</span><span class="chip">Embedded sensors</span><span class="chip">Safety-critical design</span>
           </div>
         </div>
         <div class="skill-page-col">
-          <div class="skill-page-head"><span class="eyebrow">Tools &amp; practice</span><span class="skill-pct-tag">95%</span></div>
-          <div class="skill-page-meter"><span style="width:95%;"></span></div>
+          <div class="skill-page-head"><span class="eyebrow">Tools &amp; practice</span><span class="skill-pct-tag">97%</span></div>
+          <div class="skill-page-meter"><span style="width:97%;"></span></div>
           <div class="chip-row">
             <span class="chip">APA 7 writing</span><span class="chip">Generative AI</span><span class="chip">Design thinking</span><span class="chip">NABC pitch</span>
           </div>
         </div>
         <div class="skill-page-col">
-          <div class="skill-page-head"><span class="eyebrow">Communication</span><span class="skill-pct-tag">95%</span></div>
-          <div class="skill-page-meter"><span style="width:95%;"></span></div>
+          <div class="skill-page-head"><span class="eyebrow">Communication</span><span class="skill-pct-tag">91%</span></div>
+          <div class="skill-page-meter"><span style="width:91%;"></span></div>
           <div class="chip-row">
             <span class="chip">Business writing</span><span class="chip">Presentation</span><span class="chip">Team collaboration</span>
           </div>
@@ -385,11 +339,7 @@
       </div>
     </div>
 
-    <!-- ============ CREDENTIALS PAGE ============
-         The full grid of certificates. Every card is a link
-         (<a class="cred-card">) that opens the real certificate
-         when clicked. Each cert's picture comes from the images/
-         folder — search "cred-card-img" below to see the pattern. -->
+    <!-- ============ CREDENTIALS PAGE ============ (each cred-card links to the actual cert image) -->
     <div class="view" id="view-credentials" hidden>
       <div class="page-head">
         <div class="eyebrow">Credentials</div>
@@ -406,7 +356,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Fundamentals of Programming Using Flowchart and Pseudocode</span>
-              <span class="cred-card-org">Packt</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Packt</span>
             </div>
           </div>
         </a>
@@ -419,7 +369,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Introduction to Generative AI and Prompt Engineering</span>
-              <span class="cred-card-org">Mapúa University</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Mapúa University</span>
             </div>
           </div>
         </a>
@@ -432,7 +382,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Introduction to Technical Writing</span>
-              <span class="cred-card-org">Board Infinity</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Board Infinity</span>
             </div>
           </div>
         </a>
@@ -445,7 +395,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Design Thinking for Innovation</span>
-              <span class="cred-card-org">University of Virginia (Darden School of Business)</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>University of Virginia (Darden School of Business)</span>
             </div>
           </div>
         </a>
@@ -458,7 +408,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Design Thinking for Innovators</span>
-              <span class="cred-card-org">Coursera</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Coursera</span>
             </div>
           </div>
         </a>
@@ -471,7 +421,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">English for Effective Business Writing</span>
-              <span class="cred-card-org">The Hong Kong University of Science and Technology</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>The Hong Kong University of Science and Technology</span>
             </div>
           </div>
         </a>
@@ -484,7 +434,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Teamwork Skills: Communicating Effectively in Groups</span>
-              <span class="cred-card-org">University of Colorado Boulder</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>University of Colorado Boulder</span>
             </div>
           </div>
         </a>
@@ -497,7 +447,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Learning How to Learn</span>
-              <span class="cred-card-org">Deep Teaching Solutions</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Deep Teaching Solutions</span>
             </div>
           </div>
         </a>
@@ -510,7 +460,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Creating a Portfolio Using Weebly</span>
-              <span class="cred-card-org">Coursera</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Coursera</span>
             </div>
           </div>
         </a>
@@ -523,7 +473,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Managing Emotions in Times of Uncertainty &amp; Stress</span>
-              <span class="cred-card-org">Yale University</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Yale University</span>
             </div>
           </div>
         </a>
@@ -536,7 +486,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Introduction to Chemistry: Reactions and Ratios</span>
-              <span class="cred-card-org">Duke University</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Duke University</span>
             </div>
           </div>
         </a>
@@ -549,7 +499,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Introduction to Chemistry: Structures and Solutions</span>
-              <span class="cred-card-org">Duke University</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Duke University</span>
             </div>
           </div>
         </a>
@@ -562,7 +512,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">What is Innovation?</span>
-              <span class="cred-card-org">Arizona State University</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Arizona State University</span>
             </div>
           </div>
         </a>
@@ -575,7 +525,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">College Trigonometry with Solid Mensuration</span>
-              <span class="cred-card-org">ALEKS</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>ALEKS</span>
             </div>
           </div>
         </a>
@@ -588,7 +538,7 @@
             <span class="cred-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
             <div class="cred-card-text">
               <span class="cred-card-name">Algorithm and Program Design</span>
-              <span class="cred-card-org">Huawei ICT Academy</span>
+              <span class="cred-card-org"><svg class="cred-org-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" stroke-linejoin="round"/><path d="M22 8v6" stroke-linecap="round"/></svg>Huawei ICT Academy</span>
             </div>
           </div>
         </a>
@@ -648,12 +598,7 @@
       <a class="get-touch" href="mailto:marpelmarb@gmail.com">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       <div class="contact-grid">
         <div class="contact-main">
-          <!-- A small looping "message in transit" animation, filling the
-               space where a plain repeat of the email address used to sit
-               (it's already given above and in the Email row to the
-               right). Built from plain SVG + CSS -- no external image or
-               GIF file -- so the site stays self-contained and this still
-               works if the folder is opened offline. -->
+          <!-- little "message sending" loop, just SVG + CSS so no image file needed -->
           <div class="contact-signal" aria-hidden="true">
             <svg class="signal-svg" viewBox="0 0 360 150" preserveAspectRatio="xMidYMid meet">
               <path id="signalPathMini" class="signal-path" d="M40,75 C130,15 230,135 320,75" fill="none"/>

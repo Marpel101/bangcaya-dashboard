@@ -1,28 +1,14 @@
-/* =====================================================================
-   styles.css
-   ---------------------------------------------------------------------
-   This file controls how the Bangcaya Dashboard site LOOKS: colors,
-   spacing, fonts, the sidebar, the cards, dark mode, etc.
-   It does not decide what text/images appear (that's index.html) or
-   what happens when you click something (that's script.js).
-   ===================================================================== */
+/* styles.css - all the look/feel stuff (colors, spacing, dark mode).
+   content is in index.html, click behavior is in script.js */
 
 /* --- tiny base reset (removes default browser margins/spacing) --- */
 :root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 
 /* --- main site styles --- */
 
-/* =====================================================================
-   COLOR VARIABLES
-   ---------------------------------------------------------------------
-   Every color on the site is a "variable" (the --name: value pairs
-   below), not hard-coded everywhere. That means to change the accent
-   color for the whole site, you only edit it in ONE place here instead
-   of hunting through hundreds of lines.
-   There are 3 sets: normal (light mode), one for dark mode based on
-   the visitor's OS setting, and one for when they click our own
-   light/dark toggle button.
-   ===================================================================== */
+/* color variables -- change a color once here instead of hunting through
+   the whole file. 3 sets below: light mode default, dark via OS setting,
+   and dark via the toggle button */
 :root{
     --bg:#f4f3ec;
     --sidebar-bg:#f4f3ec;
@@ -88,12 +74,7 @@
   a{color:inherit;}
   img{max-width:100%;}
 
-  /* =====================================================================
-     PAGE LAYOUT
-     ---------------------------------------------------------------------
-     .shell wraps EVERYTHING: it lines up the sidebar on the left and
-     the main content on the right.
-     ===================================================================== */
+  /* page layout -- .shell = sidebar on the left, content on the right */
   .shell{display:flex;align-items:flex-start;min-height:100%;max-width:clamp(1280px,90vw,1600px);margin:0 auto;}
 
   /* ---------------- Sidebar ---------------- */
@@ -129,9 +110,7 @@
     position:relative;margin-top:auto;width:100%;height:36px;border-radius:999px;background:var(--chip-bg);
     border:1px solid var(--panel-border);cursor:pointer;padding:3px;display:flex;align-items:center;flex:none;
   }
-  /* Hamburger button -- hidden here on the full desktop sidebar (the nav
-     is already visible there, so there's nothing to reveal). It only
-     switches on inside the max-width:900px rule below. */
+  /* hidden on desktop, turned on in the max-width:900px rule below */
   .menu-toggle{display:none;background:var(--chip-bg);border:1px solid var(--panel-border);border-radius:50%;cursor:pointer;color:var(--ink);}
   .menu-icon-close{display:none;}
   .tt-opt{
@@ -139,9 +118,7 @@
     font-size:11.5px;font-weight:700;color:var(--ink-mute);
     transition:color .25s ease;pointer-events:none;
   }
-  /* The icon is only for the narrow top-bar layout (see the max-width:900px
-     rule further down) -- on the full desktop sidebar there's room to just
-     spell out "Light"/"Dark", so the icon stays hidden there. */
+  /* icon-only version, turned on for mobile further down */
   .tt-icon{display:none;width:13px;height:13px;flex:none;}
   .tt-thumb{
     position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;
@@ -166,13 +143,9 @@
   .main{flex:1;min-width:0;min-height:100vh;padding:22px 32px 22px;display:flex;flex-direction:column;justify-content:flex-start;}
   .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--ink-mute);text-transform:uppercase;}
-  /* Hidden by default (desktop: the eyebrow text fits on one line) --
-     switched on for the mobile layout in the max-width:900px rule
-     further down, so the line only breaks there, at a clean point. */
+  /* fits on one line on desktop, turned into a real break on mobile below */
   .eyebrow-break{display:none;}
-  /* "Get in touch" floats in the bottom-right corner and stays there as
-     the Home page scrolls -- on desktop and mobile alike -- instead of
-     scrolling away with the hero section like an ordinary in-page link. */
+  /* fixed bottom-right, same on every page, stays put while you scroll */
   .get-touch{
     position:fixed;right:28px;bottom:calc(28px + env(safe-area-inset-bottom,0px));z-index:6;
     display:inline-flex;align-items:center;gap:6px;background:var(--cta-bg);color:var(--cta-ink);
@@ -197,10 +170,8 @@
   .ticker-label .eyebrow{margin-bottom:3px;}
   .ticker-label strong{font-size:14.5px;font-weight:700;}
   .ticker-view{flex:1 1 0;width:0;min-width:0;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
-  /* The 22s here is just a fallback for the instant before script.js
-     runs; script.js sets the real animation-duration in proportion to
-     how many tools are in the list, so the scroll pace stays steady
-     however long the list gets (see PART 1 in script.js). */
+  /* 22s is just a fallback before script.js loads and sets the real
+     duration based on tool count (PART 1 in script.js) */
   .ticker-track{display:flex;gap:34px;width:max-content;animation:tickerMove 22s linear infinite;}
   @media (prefers-reduced-motion: reduce){.ticker-track{animation:none;}}
   @keyframes tickerMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -278,11 +249,8 @@
   }
   .about-fig svg{width:100%;height:auto;max-width:150px;}
   .about-fig img{width:auto;height:auto;max-width:238px;max-height:238px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(20,20,10,.22));}
-  /* The About card's photo is bigger than it used to be. These three
-     rules only apply inside the About card (not the other bento cards)
-     and trim a few px of its own spacing so the bigger photo fits in
-     the same card height instead of pushing the Projects/Builds cards
-     next to it taller too. */
+  /* made the About photo bigger, so trim its own spacing a bit so the
+     card doesn't grow taller and push the other bento cards out of line */
   .bcard.about .bcard-head{margin-bottom:4px;}
   .bcard.about .bcard-desc{margin-bottom:6px;}
   .bcard.about .chip-row{gap:5px;}
@@ -355,13 +323,7 @@
   .journey-row .jrole{font-size:11px;color:var(--ink-soft);margin-top:1px;}
   .journey-row .jtags{font-size:10.5px;color:var(--accent);font-weight:700;margin-top:3px;}
 
-  /* =====================================================================
-     DEDICATED PAGES
-     ---------------------------------------------------------------------
-     Styles shared by every full-page view (Projects, Skills,
-     Credentials, About, Contact) plus each one's own specific styles
-     below, in that order.
-     ===================================================================== */
+  /* shared styles for the full-page views, then each page's own stuff below */
   .view[hidden]{display:none;}
   .page-head{max-width:640px;margin-bottom:28px;}
   .page-title{font-size:32px;font-weight:800;line-height:1.15;margin:10px 0 10px;letter-spacing:-0.01em;}
@@ -425,12 +387,16 @@
   }
   .cred-card:hover .cred-card-view{opacity:1;transform:translateY(0);}
   .cred-card-view svg{width:12px;height:12px;flex:none;}
-  .cred-card-foot{padding:12px 14px;display:flex;align-items:center;gap:10px;}
+  /* flex-start not center -- center was pushing the badge up/down depending
+     on whether the title wrapped to 1 or 2 lines, so badges didn't line up
+     across a row. flex-start keeps them all pinned to the same spot. */
+  .cred-card-foot{padding:12px 14px;display:flex;align-items:flex-start;gap:10px;}
   .cred-badge{width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;flex:none;}
   .cred-badge svg{width:14px;height:14px;}
   .cred-card-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
   .cred-card-name{font-size:12.5px;font-weight:700;line-height:1.35;}
-  .cred-card-org{font-size:11px;font-weight:600;line-height:1.3;color:var(--ink-mute);}
+  .cred-card-org{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;line-height:1.3;color:var(--ink-mute);}
+  .cred-org-icon{width:11px;height:11px;flex:none;}
   @media (prefers-reduced-motion: reduce){.cred-card{animation:none;opacity:1;transform:none;}}
   @media (max-width:900px){.cred-gallery{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:520px){.cred-gallery{grid-template-columns:1fr;}}
@@ -452,12 +418,8 @@
     background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:26px;
     box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;gap:16px;
   }
-  /* .chip-row normally has margin-top:auto so it pins to the bottom of
-     a bento card (see the About card higher up). .contact-main is also
-     a flex column, so without this override that same rule would grab
-     all of the card's extra height and shove the chips (and the note
-     under them) down, leaving a large empty gap under the email
-     address -- that's not wanted here, so it's turned back off. */
+  /* chip-row has margin-top:auto for the bento cards, undo that here or
+     it pushes the chips + note way down leaving a gap under the email */
   .contact-main .chip-row{margin-top:0;}
   .contact-email{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);}
   .contact-note{font-size:12.5px;color:var(--ink-mute);line-height:1.5;}
@@ -475,11 +437,7 @@
   .contact-row-handle{font-size:11.5px;color:var(--ink-mute);}
   .contact-row-arrow{width:15px;height:15px;color:var(--ink-mute);flex:none;opacity:0;transform:translate(-3px,3px);transition:opacity .2s ease,transform .2s ease;}
 
-  /* A small "message in transit" animation that fills the space where
-     a plain repeat of the email address used to sit inside the card:
-     a signal pulses out of the envelope, a dot travels the line to
-     the pin, and the pin gives a quiet reply-received pulse -- all
-     plain SVG + CSS, no image file. */
+  /* the little envelope -> dot travels -> pin pulse animation, plain SVG+CSS */
   .contact-signal{width:100%;}
   .signal-svg{width:100%;height:auto;max-height:150px;display:block;overflow:visible;color:var(--ink-soft);}
   .signal-path{stroke:var(--panel-border);stroke-width:2;stroke-dasharray:1 9;stroke-linecap:round;}
@@ -507,12 +465,8 @@
     .signal-dot{display:none;}
   }
   @media (max-width:680px){.contact-grid{grid-template-columns:1fr;}}
-  /* script.js watches every page for a moment where the floating
-     "Get in touch" button's fixed corner would land on top of another
-     link or button (the Contact page's email/social list on narrow
-     screens, a bento card's "View all" link at certain widths, etc.)
-     and adds this class for as long as that's true, so the button
-     steps aside instead of covering -- and blocking -- real content. */
+  /* script.js adds this when the floating button would land on top of
+     another link/button, so it steps aside instead of blocking clicks */
   .get-touch.gt-hide{opacity:0;pointer-events:none;}
 
   @media (max-width:900px){
@@ -539,36 +493,25 @@
   }
 
   /* ---------------- responsive ----------------
-     Below 900px wide, the left sidebar can no longer stand next to the
-     page content, so it turns into a top bar instead: the same nav,
-     just laid out sideways. The rules below give that top bar its own
-     comfortable sizing -- bigger tap targets, bigger text -- rather
-     than just squishing the sidebar's desktop sizes into a row, which
-     used to make everything look cramped and hard to tap on a phone. */
+     under 900px the sidebar becomes a top bar instead (same nav, sideways).
+     bigger tap targets/text here instead of just squishing the desktop sizes,
+     that looked cramped and was annoying to tap on my phone */
   @media (max-width:900px){
     .shell{flex-direction:column;align-items:stretch;}
     .sidebar{width:100%;position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:16px clamp(16px,4vw,22px);gap:12px 16px;border-bottom:1px solid var(--line);}
-    /* clamp(min, scales-with-screen-width, max) -- these sizes are not
-       fixed numbers. They grow and shrink smoothly with the browser's
-       actual width between the min and max, so the photo and text stay
-       nice and readable whether this is a big tablet or a small phone,
-       instead of suddenly jumping smaller at one exact width. */
+    /* clamp() so these scale smoothly with screen width instead of
+       jumping at one exact breakpoint */
     .avatar-wrap{width:clamp(46px,12vw,52px);height:clamp(46px,12vw,52px);margin-bottom:0;}
     .verified{width:clamp(17px,4.5vw,19px);height:clamp(17px,4.5vw,19px);border-width:2px;}
     .verified svg{width:10px;height:10px;}
     .name-row{font-size:clamp(15px,4vw,16.5px);}
     .handle{display:none;}
-    /* Swap the "Light"/"Dark" words for just the sun/moon icons here --
-       the top bar is tight on width, and an icon reads just as clearly
-       as the word while taking a fraction of the space. */
+    /* just the icon here, no room for the word on the top bar */
     .theme-toggle{width:clamp(56px,14vw,64px);min-width:56px;height:clamp(30px,7.5vw,34px);margin:0 0 0 auto;order:1;flex:none;}
     .tt-icon{display:block;}
     .tt-label{display:none;}
 
-    /* The hamburger button sits right next to the theme toggle. Tapping
-       it adds/removes "nav-open" on the sidebar -- see PART 4 in
-       script.js -- which is the only thing that decides whether the
-       drawer below (nav links + social icons) is shown or hidden. */
+    /* tapping this toggles "nav-open" on the sidebar, see PART 4 in script.js */
     .menu-toggle{
       display:flex;align-items:center;justify-content:center;order:2;flex:none;
       width:clamp(30px,7.5vw,34px);height:clamp(30px,7.5vw,34px);
@@ -577,10 +520,7 @@
     .sidebar.nav-open .menu-icon-bars{display:none;}
     .sidebar.nav-open .menu-icon-close{display:block;}
 
-    /* Collapsed by default: this is the "drawer" a hamburger menu reveals.
-       It holds the page links and, below them, the social icons -- moved
-       out of the cramped top row entirely, the way most sites tuck extra
-       links away on a small screen instead of cramming them all in. */
+    /* the drawer -- nav links + socials, hidden until the hamburger opens it */
     nav.side-nav{display:none;order:4;width:100%;margin-top:14px;gap:4px;}
     .sidebar.nav-open nav.side-nav{display:flex;}
     .side-nav a{padding:12px 14px;font-size:14.5px;border-radius:12px;}
@@ -606,30 +546,20 @@
     h1.hero-head{font-size:32px;}
     .eyebrow-break{display:block;}
     .eyebrow-sep{display:none;}
-    /* Same floating "Get in touch" button as desktop (see the base
-       .get-touch rule above), just pulled in a bit closer to the
-       corner on the smaller screen. */
+    /* same button as desktop, just closer to the corner */
     .get-touch{right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));}
   }
   @media (max-width:480px){
-    /* The header sizes above already scale themselves down smoothly for
-       small screens (see the clamp() comment), so nothing needs to be
-       repeated here. This breakpoint just restacks the home-page cards
-       into a single column, which is a layout change, not a size one. */
+    /* headers already scale down via clamp(), this just restacks the
+       bento cards into one column */
     .bento{grid-template-columns:1fr;}
     .bcard.projects,.bcard.about,.bcard.builds,.bcard.credentials,.bcard.services,.bcard.journey{grid-column:1;}
     .bcard.about{grid-row:1;} .bcard.projects{grid-row:2;} .bcard.builds{grid-row:3;}
     .bcard.credentials{grid-row:4;} .bcard.services{grid-row:5;} .bcard.journey{grid-row:6;}
     .ticker-card{flex-direction:column;align-items:flex-start;gap:10px;}
     .ticker-label{border-right:none;padding-right:0;}
-    /* .ticker-view's "flex:1 1 0;width:0" (set higher up in this file)
-       only makes sense in the desktop side-by-side ROW layout, where
-       it's what lets flexbox correctly hand it the remaining space
-       next to the label. Once .ticker-card switches to a stacked
-       COLUMN just above, "flex:1 1 0" instead zeroes out its HEIGHT
-       (flex-basis applies to whichever direction is now the main
-       axis), collapsing the whole scrolling tool ticker to nothing --
-       invisible and effectively "not working". Turning flex off and
-       giving it back a real width fixes both problems at once. */
+    /* ticker-view's flex:1 1 0 only works in the desktop row layout --
+       once ticker-card stacks into a column above, that same rule zeroes
+       out the height instead and the ticker disappears. undo it here. */
     .ticker-view{width:100%;flex:none;}
   }
