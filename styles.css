@@ -363,6 +363,13 @@
   @media (prefers-reduced-motion: reduce){.proj-list-card{animation:none;opacity:1;transform:none;}}
   .proj-list-card h3{font-size:19px;font-weight:800;margin:8px 0 8px;}
   .proj-list-card p{color:var(--ink-soft);font-size:14px;line-height:1.6;margin:0 0 12px;max-width:640px;}
+  /* The 640px cap above is for the readable-measure paragraph nested inside
+     .plc-text on the Projects page (narrow by design, next to a figure
+     column). Coursework's cards have no figure column -- their intro <p>
+     sits directly in .proj-list-card -- so that same cap left a wide bare
+     gap between the paragraph and the full-width meta box below it. Let
+     that direct-child paragraph use the full card width instead. */
+  .proj-list-card > p{max-width:none;}
   /* optional figure inside a project card -- floats right on wide screens, stacks on top on narrow ones */
   /* .plc-body only holds the two-column part of a card (problem/approach
      text beside its figure). The pipeline diagram, the format/meta box,
@@ -466,7 +473,7 @@
      two images side by side instead keeps the whole figure column close
      to the same height as the text next to it; a card with only one
      image (:only-child) still gets the full 340px width to itself. */
-  .plc-figure-row{display:flex;gap:14px;flex:none;width:340px;flex-direction:row;flex-wrap:nowrap;}
+  .plc-figure-row{display:flex;gap:14px;flex:none;width:340px;flex-direction:row;flex-wrap:nowrap;align-items:flex-start;align-self:center;}
   .plc-figure-row .plc-figure{width:calc(50% - 7px);min-width:0;}
   .plc-figure-row .plc-figure:only-child{width:100%;}
   @media (max-width:460px){.plc-figure-row{flex-direction:column;}.plc-figure-row .plc-figure{width:100%;max-width:280px;}}
