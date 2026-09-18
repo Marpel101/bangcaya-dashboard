@@ -490,13 +490,20 @@
   @media (prefers-reduced-motion: reduce){.calc-pipe-step,.calc-out-chip{animation:none;opacity:1;transform:none;}}
   @media (max-width:640px){.calc-pipeline{padding:14px;}}
 
-  /* Engineering the College Experience: four engineering-frame analogies, 2x2 */
+  /* Engineering the College Experience: four engineering-frame analogies.
+     This card no longer has a figure column beside it (image removed per
+     confirmation), so .frame-grid is a full-width direct child of
+     .proj-list-card -- same full-width-content pattern as .plc-meta --
+     and gets all four frames in a single row instead of the 2x2 used when
+     the grid was still fighting a figure column for space. */
   .frame-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px;max-width:640px;}
+  .proj-list-card > .frame-grid{max-width:none;grid-template-columns:repeat(4,1fr);}
   .frame-card{background:var(--chip-bg);border-radius:12px;padding:14px 15px;}
   .frame-card .fc-q{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-text);}
   .frame-card h4{font-size:13.5px;font-weight:800;margin:5px 0 5px;}
   .frame-card p{font-size:12px;line-height:1.5;color:var(--ink-soft);margin:0;}
   @media (max-width:560px){.frame-grid{grid-template-columns:1fr;}}
+  @media (max-width:900px){.proj-list-card > .frame-grid{grid-template-columns:1fr 1fr;}}
 
   /* --- Personal Journey, now a subsection of the About page --- */
   .about-journey{background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);margin-top:20px;}
