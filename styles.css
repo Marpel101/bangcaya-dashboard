@@ -393,10 +393,38 @@
   .frame-card p{font-size:12px;line-height:1.5;color:var(--ink-soft);margin:0;}
   @media (max-width:560px){.frame-grid{grid-template-columns:1fr;}}
 
-  /* --- Personal Journey page --- */
-  .journey-page-body{background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);}
-  .journey-page-body p{color:var(--ink-soft);font-size:14.5px;line-height:1.75;max-width:720px;margin:0 0 14px;}
-  .journey-page-body p:last-child{margin-bottom:0;}
+  /* --- Personal Journey, now a subsection of the About page --- */
+  .about-journey{background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);margin-top:20px;}
+  .about-journey-head{margin-bottom:18px;max-width:640px;}
+  .about-journey-head .eyebrow{display:block;margin-bottom:6px;}
+  .about-journey-head h2{font-size:19px;font-weight:800;letter-spacing:-0.01em;margin:0 0 6px;}
+  .about-journey-sub{color:var(--ink-mute);font-size:13px;line-height:1.5;margin:0;}
+  .about-journey-text{max-width:680px;}
+  .about-journey-text p{color:var(--ink-soft);font-size:14px;line-height:1.72;margin:0 0 14px;}
+  .about-journey-text p:last-child{margin-bottom:0;}
+
+  /* horizontal auto-sliding strip of real photos from the ports/places this
+     journey has actually passed through, running the full width of the
+     panel below the text -- list built once in script.js, duplicated there
+     for a seamless loop, same technique as the "tools I work with" ticker
+     on Home (.ticker-track/tickerMove), just carrying photo cards instead
+     of tool chips */
+  .journey-photo-ticker{
+    margin-top:22px;position:relative;overflow:hidden;padding:4px 0 2px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+  }
+  .jpt-track{display:flex;gap:18px;width:max-content;animation:jptMoveX 30s linear infinite;}
+  @media (prefers-reduced-motion: reduce){.jpt-track{animation:none;}}
+  @keyframes jptMoveX{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .jpt-card{flex:none;width:152px;}
+  .jpt-card-photo{width:152px;height:152px;border-radius:14px;overflow:hidden;background:var(--chip-bg);border:1px solid var(--panel-border);box-shadow:var(--shadow);}
+  .jpt-card img{display:block;width:100%;height:100%;object-fit:cover;}
+  .jpt-cap{display:block;margin-top:9px;text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.01em;color:var(--ink-soft);}
+  @media (max-width:640px){
+    .jpt-card{width:124px;}
+    .jpt-card-photo{width:124px;height:124px;}
+  }
   .plc-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin:0 0 14px;padding:12px 14px;background:var(--chip-bg);border-radius:12px;}
   .plc-meta-item{display:flex;flex-direction:column;gap:3px;min-width:150px;}
   .plc-meta-label{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-mute);}
@@ -628,3 +656,19 @@
        out the height instead and the ticker disappears. undo it here. */
     .ticker-view{width:100%;flex:none;}
   }
+
+  /* --- "Copied" confirmation toast, shown after tapping an email link
+     (see script.js PART 5). Sits outside .sidebar/.main so it's positioned
+     relative to the viewport no matter which page is open. */
+  .copy-toast{
+    position:fixed;left:50%;bottom:28px;z-index:50;
+    display:flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--panel);
+    padding:11px 18px;border-radius:999px;font-size:13.5px;font-weight:700;
+    box-shadow:0 10px 28px rgba(0,0,0,.28);
+    transform:translate(-50%,14px);opacity:0;pointer-events:none;
+    transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease;
+  }
+  .copy-toast svg{width:15px;height:15px;flex:none;color:var(--accent-text);}
+  .copy-toast.show{transform:translate(-50%,0);opacity:1;}
+  @media (max-width:640px){.copy-toast{bottom:calc(18px + env(safe-area-inset-bottom,0px));font-size:13px;}}

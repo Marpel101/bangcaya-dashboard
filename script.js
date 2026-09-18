@@ -56,6 +56,37 @@
   }
 })();
 
+/* PART 1B: the scrolling photo strip below the Personal Journey text on
+   the About page -- same seamless-loop technique as the tools ticker
+   above (list once, render it twice, animate by exactly -50%), sliding
+   horizontally the same way the tools row does. Every entry here is a
+   real, distinct place or moment -- never the same photo twice in the
+   underlying list, only the one intentional full-list repeat that makes
+   the scroll loop invisible.
+   NOTE: no loading="lazy" here on purpose -- these cards sit in a track
+   that's moved with a CSS transform, not real scrolling, so the browser's
+   viewport-intersection lazy loader never "sees" the later cards and
+   just leaves them unloaded forever. Eager-loading a handful of small
+   already-compressed images is cheap, so load them all up front. */
+(function(){
+  var photos = [
+    {src:'images/travel-officer-1.jpg', alt:'In uniform as 4th Engineer', cap:'4th Engineer'},
+    {src:'images/travel-singapore.jpg', alt:'Standing near Marina Bay Sands, Singapore', cap:'Singapore'},
+    {src:'images/travel-istanbul.jpg', alt:'On deck transiting the Bosphorus, Istanbul, Türkiye', cap:'Istanbul, Türkiye'},
+    {src:'images/travel-port-said-egypt.jpg', alt:'Port Said, Egypt, near the Suez Canal', cap:'Port Said, Egypt'},
+    {src:'images/travel-guangzhou-china.jpg', alt:'Guangzhou, China, boarding for the next contract', cap:'Guangzhou, China'},
+    {src:'images/travel-indonesia.jpg', alt:'On deck off the coast of Indonesia', cap:'Indonesia'}
+  ];
+  var frag = '';
+  for (var reps=0; reps<2; reps++){
+    photos.forEach(function(p){
+      frag += '<div class="jpt-card"><div class="jpt-card-photo"><img src="'+p.src+'" alt="'+p.alt+'"></div><span class="jpt-cap">'+p.cap+'</span></div>';
+    });
+  }
+  var track = document.getElementById('journeyPhotoTrack');
+  if (track) track.innerHTML = frag;
+})();
+
 /* PART 2: page switching. all 6 pages already exist in index.html, just
    hidden -- clicking a nav link doesn't reload, just shows/hides divs */
 (function(){
@@ -118,7 +149,7 @@
 
   // open straight to e.g. #credentials if the URL has it, else Home
   var initial = (location.hash || '').replace('#','');
-  var valid = ['home','about','projects','coursework','journey','skills','credentials','contact'];
+  var valid = ['home','about','coursework','projects','skills','credentials','contact'];
   showView(valid.indexOf(initial) !== -1 ? initial : 'home');
 })();
 
@@ -215,5 +246,63 @@
   menuBtn.addEventListener('click', function(){
     var isOpen = sidebar.classList.toggle('nav-open');
     menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+})();
+
+/* PART 5: email links. mailto: only opens something if the visitor's
+   browser/OS actually has a mail client registered as the default handler
+   -- plenty of people don't have one set, and clicking a mailto: link then
+   just looks like nothing happened. So on every element with
+   data-copy-email: copy the address to the clipboard and show a brief
+   "Copied" toast every time, *in addition to* letting the normal mailto:
+   navigation still fire (no preventDefault) -- so a visitor who does have
+   a mail client gets that too, and a visitor who doesn't still walks away
+   with the address ready to paste in. */
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('[data-copy-email]'));
+  if (!links.length) return;
+
+  var toast = document.getElementById('copyToast');
+  var toastText = document.getElementById('copyToastText');
+  var hideTimer = null;
+
+  function showToast(msg){
+    if (!toast) return;
+    if (toastText) toastText.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(){
+      var email = a.getAttribute('data-copy-email');
+      if (!email) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function(){
+          showToast('Copied ' + email);
+        }).catch(function(){
+          fallbackCopy(email);
+          showToast('Copied ' + email);
+        });
+      } else {
+        fallbackCopy(email);
+        showToast('Copied ' + email);
+      }
+      // mailto: navigation is left to happen on its own -- this handler
+      // never calls preventDefault()
+    });
   });
 })();
