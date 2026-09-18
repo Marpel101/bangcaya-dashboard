@@ -230,7 +230,25 @@
             <span class="eyebrow">CPE102L-4 &mdash; Programming Logic &amp; Design</span>
           </div>
           <h3>Number Systems &amp; Notations Calculator</h3>
-          <p>Takes a postfix or prefix expression, evaluates it with a stack, reconstructs the fully-parenthesized infix version, and converts the result into decimal, binary, hexadecimal, and octal &mdash; one pipeline instead of four separate tools. Rejects malformed input with a retry instead of crashing, carries negative results through every base correctly, and every test case was cross-checked live against three independent reference sites (a notation visualizer, a stack visualizer, and a hex converter) until all three matched.</p>
+          <div class="plc-stages">
+            <div class="plc-stage"><span class="plc-stage-label">The problem</span><span class="plc-stage-text">Postfix/prefix evaluation, infix reconstruction, and base conversion are usually taught &mdash; and tested &mdash; as four separate exercises, so it's easy to get each one individually right and the pipeline collectively wrong.</span></div>
+            <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">Built the logic in Flowgorithm first, then ported it to Python: a stack evaluates the expression, the evaluation trace reconstructs the fully-parenthesized infix form, and the result converts to binary, hex, and octal in one pass &mdash; with input validation that retries on a malformed expression instead of crashing.</span></div>
+            <div class="plc-stage"><span class="plc-stage-label">Validation</span><span class="plc-stage-text">Every test case, including negative results, was cross-checked live against three independent reference tools (a notation visualizer, a stack visualizer, a hex converter) until all three agreed.</span></div>
+          </div>
+          <div class="calc-pipeline" aria-hidden="false">
+            <div class="calc-pipe-step" style="animation-delay:.03s"><b>Postfix / Prefix</b><span>input expression</span></div>
+            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <div class="calc-pipe-step" style="animation-delay:.08s"><b>Stack eval</b><span>resolves operators</span></div>
+            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <div class="calc-pipe-step" style="animation-delay:.13s"><b>Infix rebuild</b><span>fully parenthesized</span></div>
+            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <div class="calc-pipe-outputs">
+              <span class="calc-out-chip" style="animation-delay:.18s">BIN</span>
+              <span class="calc-out-chip" style="animation-delay:.21s">DEC</span>
+              <span class="calc-out-chip" style="animation-delay:.24s">HEX</span>
+              <span class="calc-out-chip" style="animation-delay:.27s">OCT</span>
+            </div>
+          </div>
           <div class="plc-meta">
             <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Flowgorithm program, ported to Python + video walkthrough</span></div>
             <div class="plc-meta-item"><span class="plc-meta-label">Operators</span><span class="plc-meta-value">+ &minus; &times; &divide; ^, with input validation</span></div>
@@ -247,7 +265,12 @@
           <h3>SentryBand Technical Report</h3>
           <div class="plc-body">
             <div class="plc-text">
-              <p>A wrist-worn safety concept for the engineers and oilers standing watch in a ship's engine room, developed as an APA&nbsp;7 technical report and a NABC pitch (Need &middot; Approach &middot; Benefit &middot; Competition). The need is real: roughly 350 seafarers and shore workers have died from enclosed-space asphyxiation since 1996, 70 of those in just the last three years, and about 95% of fatal ferry incidents happen on smaller domestic-route vessels that don't carry the fixed monitoring larger ships already have. SentryBand fuses heat-strain sensing (skin temperature and heart rate) with gas sensing (carbon monoxide, hydrogen sulfide, and combustible vapors) on an ESP32 microcontroller, checks every reading against the NIOSH heat framework and standard gas-exposure thresholds, and escalates from a vibration alert to a full vibration/LED/buzzer alarm with a Bluetooth Low Energy notification to the control-room dashboard &mdash; sealed in an IP65-rated housing, running a full multi-hour watch on a rechargeable Li-ion battery.</p>
+              <p class="plc-intro">A wrist-worn safety concept for the engineers and oilers standing watch in a ship's engine room, developed as an APA&nbsp;7 technical report and a NABC pitch (Need &middot; Approach &middot; Benefit &middot; Competition).</p>
+              <div class="plc-stages">
+                <div class="plc-stage"><span class="plc-stage-label">The need</span><span class="plc-stage-text">Roughly 350 seafarers and shore workers have died from enclosed-space asphyxiation since 1996, 70 of those in just the last three years &mdash; and about 95% of fatal ferry incidents happen on smaller domestic-route vessels that don't carry the fixed monitoring larger ships already have.</span></div>
+                <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">SentryBand fuses heat-strain sensing (skin temperature and heart rate) with gas sensing (carbon monoxide, hydrogen sulfide, and combustible vapors) on an ESP32 microcontroller, checks every reading against the NIOSH heat framework and standard gas-exposure thresholds, and escalates from a vibration alert to a full vibration/LED/buzzer alarm with a Bluetooth Low Energy notification to the control-room dashboard &mdash; sealed in an IP65-rated housing, running a full watch on a rechargeable Li-ion battery.</span></div>
+                <div class="plc-stage"><span class="plc-stage-label">Benchmarked</span><span class="plc-stage-text">Positioned in the NABC pitch against the three categories already in use &mdash; fixed monitoring systems, portable gas detectors, and wearable health trackers &mdash; none of which combine continuous dual-hazard sensing with engine-room-rated (IP65) wear.</span></div>
+              </div>
               <div class="plc-meta">
                 <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">APA 7 report + NABC pitch deck &amp; script</span></div>
                 <div class="plc-meta-item"><span class="plc-meta-label">Sensing</span><span class="plc-meta-value">Heat-strain (skin temp + heart rate) &amp; gas (CO, H&#8322;S, combustible vapors) on an ESP32</span></div>
@@ -257,10 +280,16 @@
                 <span class="chip">Technical writing</span><span class="chip">APA 7</span><span class="chip">NABC framework</span><span class="chip">Embedded sensing</span><span class="chip">IP65 design</span>
               </div>
             </div>
-            <figure class="plc-figure">
-              <img src="images/sentryband-anatomy-infographic.jpg" alt="SentryBand component diagram: MEMS temperature/heart-rate sensor, multi-gas sensor array, ESP32-based microcontroller and wireless module, local alert actuators, and a rechargeable battery in an IP65 housing" loading="lazy">
-              <figcaption>Component diagram from the technical report</figcaption>
-            </figure>
+            <div class="plc-figure-row">
+              <figure class="plc-figure">
+                <img src="images/sentryband-anatomy-infographic.jpg" alt="SentryBand component diagram: MEMS temperature/heart-rate sensor, multi-gas sensor array, ESP32-based microcontroller and wireless module, local alert actuators, and a rechargeable battery in an IP65 housing" loading="lazy">
+                <figcaption>Component diagram from the technical report</figcaption>
+              </figure>
+              <figure class="plc-figure">
+                <img src="images/sentryband-competition-table.jpg" alt="Comparison table from the NABC pitch: fixed monitoring systems, portable gas detectors, and wearable health trackers each fall short on cost, coverage, or gas sensing, versus SentryBand's continuous dual sensing, IP65 engine-room rating, and small/medium-vessel pricing" loading="lazy">
+                <figcaption>Competitive positioning from the NABC pitch</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
         <div class="proj-list-card">
@@ -268,7 +297,29 @@
             <span class="eyebrow">CPE101-4 &mdash; Computer Engineering</span>
           </div>
           <h3>Engineering the College Experience</h3>
-          <p>A scripted interview-style video essay answering four assigned questions through engineering analogies: high school vs. college as a closed-loop vs. open-loop feedback system, a weekly schedule as a task-scheduling problem (starvation, bottlenecks, and a built-in safety margin), a graduation plan as a dependency graph with a critical path, and upper-division students as the fastest available feedback loop of tribal knowledge.</p>
+          <p>A scripted interview-style video essay answering four assigned discussion questions, each one reframed through an engineering lens instead of a straight opinion answer.</p>
+          <div class="frame-grid">
+            <div class="frame-card">
+              <span class="fc-q">Q1 &middot; Feedback loops</span>
+              <h4>High school vs. college</h4>
+              <p>A closed-loop system with constant teacher correction, vs. an open-loop system that runs on self-correction.</p>
+            </div>
+            <div class="frame-card">
+              <span class="fc-q">Q2 &middot; Scheduling</span>
+              <h4>A weekly schedule</h4>
+              <p>A task-scheduling problem: starvation, bottlenecks, and why a safety margin has to be built in on purpose.</p>
+            </div>
+            <div class="frame-card">
+              <span class="fc-q">Q3 &middot; Critical path</span>
+              <h4>A graduation plan</h4>
+              <p>A dependency graph, where one prerequisite on the critical path can delay every course after it.</p>
+            </div>
+            <div class="frame-card">
+              <span class="fc-q">Q4 &middot; Redundancy</span>
+              <h4>Upper-division students</h4>
+              <p>The fastest available feedback loop of tribal knowledge &mdash; a redundant path around slower official channels.</p>
+            </div>
+          </div>
           <div class="plc-meta">
             <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Scripted interview-style video, ~6&ndash;7 min</span></div>
             <div class="plc-meta-item"><span class="plc-meta-label">Engineering frames used</span><span class="plc-meta-value">Feedback loops &middot; scheduling &middot; critical path &middot; redundancy</span></div>
@@ -283,14 +334,33 @@
             <span class="eyebrow">CM011 &mdash; Special Topics in General Chemistry</span>
           </div>
           <h3>Semiconductor Fabrication Chemistry</h3>
-          <p>A Module 3 technical presentation tracing chip manufacturing back to the chemistry underneath it: photolithography, doping, and etching, the three chemical operations repeated 30&ndash;100+ times to build a single wafer. Worked through the Rayleigh criterion to show why EUV's shorter wavelength (13.5&nbsp;nm vs. 193&nbsp;nm) prints roughly 3.5&times; smaller features, and the implant-dose equation to show why ion implantation's independently-tunable dose and depth displaced diffusion doping for critical junctions. Closes on the environmental cost &mdash; fabrication runs about 185M tons CO&#8322;-equivalent a year, and roughly half of per-wafer chemical use is wet processing &mdash; and why that chemistry sets a hard ceiling on chip cost, performance, and where fabs can be built.</p>
-          <div class="plc-meta">
-            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">18-slide technical presentation</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Worked calculations</span><span class="plc-meta-value">Rayleigh criterion (CD = k&#8321;&middot;&lambda;/NA) &amp; implant dose (Q = It/qA)</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Covers</span><span class="plc-meta-value">Photolithography &middot; doping &middot; wet &amp; dry etching &middot; environmental cost</span></div>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Semiconductor chemistry</span><span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span><span class="chip">Technical presentation</span>
+          <div class="plc-body">
+            <div class="plc-text">
+              <p class="plc-intro">A Module 3 technical presentation tracing chip manufacturing back to the chemistry underneath it &mdash; three operations repeated 30&ndash;100+ times to build a single wafer.</p>
+              <div class="plc-stages">
+                <div class="plc-stage"><span class="plc-stage-label">The problem</span><span class="plc-stage-text">Chip manufacturing looks like a mechanical problem from the outside, but patterning, doping, and etching are each a chemistry problem underneath &mdash; and that chemistry is what actually limits performance, cost, and availability.</span></div>
+                <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">Traced the cycle chemically: positive/negative photoresist chemistry in photolithography, diffusion vs. ion-implantation doping, and wet vs. dry (plasma) etching &mdash; then worked the Rayleigh criterion to show why EUV's 13.5&nbsp;nm wavelength prints ~3.5&times; smaller features than 193&nbsp;nm DUV, and the implant-dose equation to show why independently-tunable dose and depth displaced diffusion for critical junctions.</span></div>
+                <div class="plc-stage"><span class="plc-stage-label">Why it matters</span><span class="plc-stage-text">Closes on the environmental cost &mdash; about 185M tons CO&#8322;-equivalent a year, roughly half of per-wafer chemical use from wet processing &mdash; and why that chemistry sets a hard ceiling on chip cost, performance, and where fabs can be built.</span></div>
+              </div>
+              <div class="plc-meta">
+                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">18-slide technical presentation</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Worked calculations</span><span class="plc-meta-value">Rayleigh criterion (CD = k&#8321;&middot;&lambda;/NA) &amp; implant dose (Q = It/qA)</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Covers</span><span class="plc-meta-value">Photolithography &middot; doping &middot; wet &amp; dry etching &middot; environmental cost</span></div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Semiconductor chemistry</span><span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span><span class="chip">Technical presentation</span>
+              </div>
+            </div>
+            <div class="plc-figure-row">
+              <figure class="plc-figure">
+                <img src="images/cm011-fabrication-cycle-diagram.jpg" alt="The fabrication cycle: Deposit, Pattern, Etch, Dope &mdash; repeated 30 to 100+ times to build a single chip" loading="lazy">
+                <figcaption>The four-step cycle, repeated per wafer</figcaption>
+              </figure>
+              <figure class="plc-figure">
+                <img src="images/cm011-rayleigh-criterion-diagram.jpg" alt="Rayleigh criterion worked calculation: CD = k1 x (lambda/NA); ArF immersion DUV at 193nm prints 42.9nm features, EUV lithography at 13.5nm prints 12.3nm features" loading="lazy">
+                <figcaption>The Rayleigh-criterion calculation, worked out</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </div>

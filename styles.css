@@ -336,7 +336,15 @@
 
   /* --- Projects page --- */
   .proj-list{display:flex;flex-direction:column;gap:2px;background:var(--panel-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
-  .proj-list-card{background:var(--panel);padding:22px 24px;}
+  .proj-list-card{background:var(--panel);padding:22px 24px;opacity:0;transform:translateY(10px);animation:plcIn .5s ease forwards;}
+  .proj-list-card:nth-child(1){animation-delay:.04s;}
+  .proj-list-card:nth-child(2){animation-delay:.10s;}
+  .proj-list-card:nth-child(3){animation-delay:.16s;}
+  .proj-list-card:nth-child(4){animation-delay:.22s;}
+  .proj-list-card:nth-child(5){animation-delay:.28s;}
+  .proj-list-card:nth-child(6){animation-delay:.34s;}
+  @keyframes plcIn{to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){.proj-list-card{animation:none;opacity:1;transform:none;}}
   .proj-list-card h3{font-size:19px;font-weight:800;margin:8px 0 8px;}
   .proj-list-card p{color:var(--ink-soft);font-size:14px;line-height:1.6;margin:0 0 12px;max-width:640px;}
   /* optional figure inside a project card -- floats right on wide screens, stacks on top on narrow ones */
@@ -350,6 +358,40 @@
   .cw-more{display:inline-flex;align-items:center;gap:5px;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--accent-text);text-decoration:none;}
   .cw-more svg{width:11px;height:11px;}
   .cw-more:hover{text-decoration:underline;}
+  .plc-intro{margin-bottom:14px !important;}
+
+  /* case-study stages (Problem / Approach / Validation / Result) inside a project card */
+  .plc-stages{display:flex;flex-direction:column;gap:9px;margin:0 0 14px;max-width:640px;}
+  .plc-stage{display:flex;gap:14px;}
+  .plc-stage-label{flex:none;width:90px;padding-top:1px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-text);}
+  .plc-stage-text{flex:1;min-width:0;font-size:13.5px;line-height:1.62;color:var(--ink-soft);}
+  @media (max-width:560px){.plc-stage{flex-direction:column;gap:2px;}.plc-stage-label{width:auto;}}
+
+  /* stacked two-figure gallery variant of .plc-figure, used when a card has two images */
+  .plc-figure-row{display:flex;gap:14px;flex:none;width:220px;flex-direction:column;}
+  .plc-figure-row .plc-figure{width:100%;}
+  @media (max-width:700px){.plc-figure-row{width:100%;max-width:340px;flex-direction:row;flex-wrap:wrap;}.plc-figure-row .plc-figure{width:calc(50% - 7px);}}
+  @media (max-width:460px){.plc-figure-row{flex-direction:column;}.plc-figure-row .plc-figure{width:100%;max-width:280px;}}
+
+  /* Number Systems calculator: built pipeline diagram (source has no diagram asset) */
+  .calc-pipeline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 16px 14px;background:var(--chip-bg);border-radius:12px;margin:0 0 14px;}
+  .calc-pipe-step{background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;padding:9px 12px;text-align:left;opacity:0;transform:translateY(6px);animation:calcStepIn .4s ease forwards;}
+  .calc-pipe-step b{display:block;font-size:12px;font-weight:800;color:var(--ink);}
+  .calc-pipe-step span{display:block;font-size:10px;color:var(--ink-mute);margin-top:2px;}
+  .calc-pipe-arrow{flex:none;width:14px;height:14px;color:var(--ink-mute);}
+  .calc-pipe-outputs{display:flex;gap:6px;flex-wrap:wrap;}
+  .calc-out-chip{background:var(--accent);color:#0d1120;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:7px 10px;border-radius:8px;opacity:0;transform:translateY(6px);animation:calcStepIn .4s ease forwards;}
+  @keyframes calcStepIn{to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){.calc-pipe-step,.calc-out-chip{animation:none;opacity:1;transform:none;}}
+  @media (max-width:640px){.calc-pipeline{padding:14px;}}
+
+  /* Engineering the College Experience: four engineering-frame analogies, 2x2 */
+  .frame-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px;max-width:640px;}
+  .frame-card{background:var(--chip-bg);border-radius:12px;padding:14px 15px;}
+  .frame-card .fc-q{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-text);}
+  .frame-card h4{font-size:13.5px;font-weight:800;margin:5px 0 5px;}
+  .frame-card p{font-size:12px;line-height:1.5;color:var(--ink-soft);margin:0;}
+  @media (max-width:560px){.frame-grid{grid-template-columns:1fr;}}
 
   /* --- Personal Journey page --- */
   .journey-page-body{background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);}
