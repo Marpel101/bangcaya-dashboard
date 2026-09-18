@@ -231,32 +231,49 @@
             <span class="eyebrow">CPE102L-4 &mdash; Programming Logic &amp; Design</span>
           </div>
           <h3>Number Systems &amp; Notations Calculator</h3>
-          <div class="plc-stages">
-            <div class="plc-stage"><span class="plc-stage-label">The problem</span><span class="plc-stage-text">Postfix/prefix evaluation, infix reconstruction, and base conversion are usually taught &mdash; and tested &mdash; as four separate exercises, so it's easy to get each one individually right and the pipeline collectively wrong.</span></div>
-            <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">Built the logic in Flowgorithm first, then ported it to Python: a stack evaluates the expression, the evaluation trace reconstructs the fully-parenthesized infix form, and the result converts to binary, hex, and octal in one pass &mdash; with input validation that retries on a malformed expression instead of crashing.</span></div>
-            <div class="plc-stage"><span class="plc-stage-label">Validation</span><span class="plc-stage-text">Every test case, including negative results, was cross-checked live against three independent reference tools (a notation visualizer, a stack visualizer, a hex converter) until all three agreed.</span></div>
-          </div>
-          <div class="calc-pipeline" aria-hidden="false">
-            <div class="calc-pipe-step" style="animation-delay:.03s"><b>Postfix / Prefix</b><span>input expression</span></div>
-            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            <div class="calc-pipe-step" style="animation-delay:.08s"><b>Stack eval</b><span>resolves operators</span></div>
-            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            <div class="calc-pipe-step" style="animation-delay:.13s"><b>Infix rebuild</b><span>fully parenthesized</span></div>
-            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            <div class="calc-pipe-outputs">
-              <span class="calc-out-chip" style="animation-delay:.18s">BIN</span>
-              <span class="calc-out-chip" style="animation-delay:.21s">DEC</span>
-              <span class="calc-out-chip" style="animation-delay:.24s">HEX</span>
-              <span class="calc-out-chip" style="animation-delay:.27s">OCT</span>
+          <div class="plc-body">
+            <div class="plc-text">
+              <div class="plc-stages">
+                <div class="plc-stage"><span class="plc-stage-label">The problem</span><span class="plc-stage-text">Postfix/prefix evaluation, infix reconstruction, and base conversion are usually taught &mdash; and tested &mdash; as four separate exercises, so it's easy to get each one individually right and the pipeline collectively wrong.</span></div>
+                <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">Built the logic in Flowgorithm first, then ported it to Python: a stack evaluates the expression, the evaluation trace reconstructs the fully-parenthesized infix form, and the result converts to binary, hex, and octal in one pass &mdash; with input validation that retries on a malformed expression instead of crashing.</span></div>
+                <div class="plc-stage"><span class="plc-stage-label">Validation</span><span class="plc-stage-text">Every test case, including negative results, was cross-checked live against three independent reference tools (a notation visualizer, a stack visualizer, a hex converter) until all three agreed.</span></div>
+              </div>
+              <div class="calc-pipeline" aria-hidden="false">
+                <div class="calc-pipe-step" style="animation-delay:.03s"><b>Postfix / Prefix</b><span>input expression</span></div>
+                <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                <div class="calc-pipe-step" style="animation-delay:.08s"><b>Stack eval</b><span>resolves operators</span></div>
+                <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                <div class="calc-pipe-step" style="animation-delay:.13s"><b>Infix rebuild</b><span>fully parenthesized</span></div>
+                <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                <div class="calc-pipe-outputs">
+                  <span class="calc-out-chip" style="animation-delay:.18s">BIN</span>
+                  <span class="calc-out-chip" style="animation-delay:.21s">DEC</span>
+                  <span class="calc-out-chip" style="animation-delay:.24s">HEX</span>
+                  <span class="calc-out-chip" style="animation-delay:.27s">OCT</span>
+                </div>
+              </div>
+              <div class="plc-meta">
+                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Flowgorithm program, ported to Python + video walkthrough</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Operators</span><span class="plc-meta-value">+ &minus; &times; &divide; ^, with input validation</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Validated against</span><span class="plc-meta-value">3 independent reference calculators</span></div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Flowgorithm</span><span class="chip">Python</span><span class="chip">Stacks</span><span class="chip">Base conversion</span><span class="chip">Input validation</span>
+              </div>
+              <div class="plc-links">
+                <a class="cw-more" href="reports/number-systems-calculator-documentation.pdf" target="_blank" rel="noopener">View the documentation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              </div>
             </div>
-          </div>
-          <div class="plc-meta">
-            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Flowgorithm program, ported to Python + video walkthrough</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Operators</span><span class="plc-meta-value">+ &minus; &times; &divide; ^, with input validation</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Validated against</span><span class="plc-meta-value">3 independent reference calculators</span></div>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Flowgorithm</span><span class="chip">Python</span><span class="chip">Stacks</span><span class="chip">Base conversion</span><span class="chip">Input validation</span>
+            <div class="plc-figure-row">
+              <figure class="plc-figure">
+                <img src="images/calculator-program-flow-diagram.jpg" alt="Flowgorithm program-flow diagram: the main loop that prompts for postfix or prefix mode, reads an expression, scans it with a stack, validates the result, and outputs it in binary, decimal, hexadecimal and octal" loading="lazy" width="900" height="1268">
+                <figcaption>Program flow, from the Flowgorithm documentation</figcaption>
+              </figure>
+              <figure class="plc-figure">
+                <img src="images/calculator-uml-class-diagram.jpg" alt="UML-style class diagram showing the calculator's Main procedure and its helper functions: IsOperatorChar, IsValidNumberToken, ApplyOp, Combine, FormatNumber, DecimalToBase and DigitChar" loading="lazy" width="1100" height="762">
+                <figcaption>Class diagram of the Main routine and its helper functions</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
         <div class="proj-list-card">
@@ -280,6 +297,10 @@
               <div class="chip-row">
                 <span class="chip">Technical writing</span><span class="chip">APA 7</span><span class="chip">NABC framework</span><span class="chip">Embedded sensing</span><span class="chip">IP65 design</span>
               </div>
+              <div class="plc-links">
+                <a class="cw-more" href="reports/sentryband-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+                <a class="cw-more" href="reports/sentryband-nabc-pitch.pdf" target="_blank" rel="noopener">View the NABC pitch deck <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              </div>
             </div>
             <div class="plc-figure-row">
               <figure class="plc-figure">
@@ -298,36 +319,49 @@
             <span class="eyebrow">CPE101-4 &mdash; Computer Engineering</span>
           </div>
           <h3>Engineering the College Experience</h3>
-          <p>A scripted interview-style video essay answering four assigned discussion questions, each one reframed through an engineering lens instead of a straight opinion answer.</p>
-          <div class="frame-grid">
-            <div class="frame-card">
-              <span class="fc-q">Q1 &middot; Feedback loops</span>
-              <h4>High school vs. college</h4>
-              <p>A closed-loop system with constant teacher correction, vs. an open-loop system that runs on self-correction.</p>
+          <div class="plc-body">
+            <div class="plc-text">
+              <p class="plc-intro">A scripted interview-style video essay answering four assigned discussion questions, each one reframed through an engineering lens instead of a straight opinion answer.</p>
+              <div class="frame-grid">
+                <div class="frame-card">
+                  <span class="fc-q">Q1 &middot; Feedback loops</span>
+                  <h4>High school vs. college</h4>
+                  <p>A closed-loop system with constant teacher correction, vs. an open-loop system that runs on self-correction.</p>
+                </div>
+                <div class="frame-card">
+                  <span class="fc-q">Q2 &middot; Scheduling</span>
+                  <h4>A weekly schedule</h4>
+                  <p>A task-scheduling problem: starvation, bottlenecks, and why a safety margin has to be built in on purpose.</p>
+                </div>
+                <div class="frame-card">
+                  <span class="fc-q">Q3 &middot; Critical path</span>
+                  <h4>A graduation plan</h4>
+                  <p>A dependency graph, where one prerequisite on the critical path can delay every course after it.</p>
+                </div>
+                <div class="frame-card">
+                  <span class="fc-q">Q4 &middot; Redundancy</span>
+                  <h4>Upper-division students</h4>
+                  <p>The fastest available feedback loop of tribal knowledge &mdash; a redundant path around slower official channels.</p>
+                </div>
+              </div>
+              <div class="plc-meta">
+                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Scripted interview-style video, ~6&ndash;7 min</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Engineering frames used</span><span class="plc-meta-value">Feedback loops &middot; scheduling &middot; critical path &middot; redundancy</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Rubric</span><span class="plc-meta-value">4 required discussion questions</span></div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Systems thinking</span><span class="chip">Communication</span><span class="chip">Video production</span>
+              </div>
+              <div class="plc-links">
+                <a class="cw-more" href="reports/college-experience-coursework.pdf" target="_blank" rel="noopener">View the coursework submission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              </div>
             </div>
-            <div class="frame-card">
-              <span class="fc-q">Q2 &middot; Scheduling</span>
-              <h4>A weekly schedule</h4>
-              <p>A task-scheduling problem: starvation, bottlenecks, and why a safety margin has to be built in on purpose.</p>
+            <div class="plc-figure-row">
+              <figure class="plc-figure">
+                <img src="images/college-experience-script-excerpt.jpg" alt="Excerpt from the video script: the host asks why a weekly schedule matters, and the guest answers by comparing an unscheduled week to a system with no task-scheduling algorithm, prone to starvation and bottlenecks" loading="lazy" width="900" height="409">
+                <figcaption>An excerpt from the interview script</figcaption>
+              </figure>
             </div>
-            <div class="frame-card">
-              <span class="fc-q">Q3 &middot; Critical path</span>
-              <h4>A graduation plan</h4>
-              <p>A dependency graph, where one prerequisite on the critical path can delay every course after it.</p>
-            </div>
-            <div class="frame-card">
-              <span class="fc-q">Q4 &middot; Redundancy</span>
-              <h4>Upper-division students</h4>
-              <p>The fastest available feedback loop of tribal knowledge &mdash; a redundant path around slower official channels.</p>
-            </div>
-          </div>
-          <div class="plc-meta">
-            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Scripted interview-style video, ~6&ndash;7 min</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Engineering frames used</span><span class="plc-meta-value">Feedback loops &middot; scheduling &middot; critical path &middot; redundancy</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Rubric</span><span class="plc-meta-value">4 required discussion questions</span></div>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Systems thinking</span><span class="chip">Communication</span><span class="chip">Video production</span>
           </div>
         </div>
         <div class="proj-list-card">
@@ -350,6 +384,10 @@
               </div>
               <div class="chip-row">
                 <span class="chip">Semiconductor chemistry</span><span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span><span class="chip">Technical presentation</span>
+              </div>
+              <div class="plc-links">
+                <a class="cw-more" href="reports/cm011-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+                <a class="cw-more" href="reports/cm011-presentation.pdf" target="_blank" rel="noopener">View the presentation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
               </div>
             </div>
             <div class="plc-figure-row">

@@ -390,6 +390,12 @@
   .cw-more svg{width:11px;height:11px;}
   .cw-more:hover{text-decoration:underline;}
   .plc-intro{margin-bottom:14px !important;}
+  /* row of "view the full document" links (report/presentation/pitch deck) on a
+     project card -- reuses .cw-more's own look so it reads as the same kind of
+     affordance as the Coursework page's "See the X" links. Wraps to its own
+     row when a card has two links (report + deck) side by side. */
+  .plc-links{display:flex;flex-wrap:wrap;column-gap:22px;row-gap:6px;margin:2px 0 14px;}
+  .plc-links .cw-more{margin-top:0;}
 
   /* case-study stages (Problem / Approach / Validation / Result) inside a project card */
   .plc-stages{display:flex;flex-direction:column;gap:9px;margin:0 0 14px;max-width:640px;}
