@@ -366,7 +366,14 @@
   /* optional figure inside a project card -- floats right on wide screens, stacks on top on narrow ones */
   .plc-body{display:flex;gap:22px;align-items:flex-start;}
   .plc-figure{flex:none;width:180px;border-radius:12px;overflow:hidden;border:1px solid var(--panel-border);background:var(--chip-bg);}
-  .plc-figure img{display:block;width:100%;height:auto;}
+  /* a couple of the source images (an infographic in particular) are tall
+     portrait shots -- at the figure column's width that renders much
+     taller than the text sitting next to it, leaving a slab of empty card
+     background below the shorter column. cap how tall any one figure can
+     get and letterbox it (object-fit:contain, so nothing gets stretched
+     or cropped) instead of letting an unusually tall image single-handedly
+     set the whole card's height. */
+  .plc-figure img{display:block;width:100%;height:auto;max-height:300px;object-fit:contain;}
   .plc-figure figcaption{font-size:10.5px;color:var(--ink-mute);padding:6px 8px;line-height:1.4;}
   .plc-text{flex:1;min-width:0;}
   @media (max-width:700px){.plc-body{flex-direction:column;}.plc-figure{width:100%;max-width:280px;}}
