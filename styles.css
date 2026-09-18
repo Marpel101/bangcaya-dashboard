@@ -634,7 +634,12 @@
 
   @media (max-width:900px){
     .skills-page-grid{grid-template-columns:1fr 1fr;}
+    /* 5 facts don't divide evenly into 2 columns -- without this the last
+       card would sit alone in its own row with an empty cell beside it,
+       showing the grid's own background color as a blank box. Spanning
+       the odd one out across both columns closes that gap. */
     .about-facts{grid-template-columns:1fr 1fr;}
+    .about-fact:last-child{grid-column:1 / -1;}
   }
   @media (max-width:520px){
     .skills-page-grid{grid-template-columns:1fr;}
