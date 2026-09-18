@@ -238,31 +238,6 @@
                 <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">Built the logic in Flowgorithm first, then ported it to Python: a stack evaluates the expression, the evaluation trace reconstructs the fully-parenthesized infix form, and the result converts to binary, hex, and octal in one pass &mdash; with input validation that retries on a malformed expression instead of crashing.</span></div>
                 <div class="plc-stage"><span class="plc-stage-label">Validation</span><span class="plc-stage-text">Every test case, including negative results, was cross-checked live against three independent reference tools (a notation visualizer, a stack visualizer, a hex converter) until all three agreed.</span></div>
               </div>
-              <div class="calc-pipeline" aria-hidden="false">
-                <div class="calc-pipe-step" style="animation-delay:.03s"><b>Postfix / Prefix</b><span>input expression</span></div>
-                <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="calc-pipe-step" style="animation-delay:.08s"><b>Stack eval</b><span>resolves operators</span></div>
-                <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="calc-pipe-step" style="animation-delay:.13s"><b>Infix rebuild</b><span>fully parenthesized</span></div>
-                <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="calc-pipe-outputs">
-                  <span class="calc-out-chip" style="animation-delay:.18s">BIN</span>
-                  <span class="calc-out-chip" style="animation-delay:.21s">DEC</span>
-                  <span class="calc-out-chip" style="animation-delay:.24s">HEX</span>
-                  <span class="calc-out-chip" style="animation-delay:.27s">OCT</span>
-                </div>
-              </div>
-              <div class="plc-meta">
-                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Flowgorithm program, ported to Python + video walkthrough</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Operators</span><span class="plc-meta-value">+ &minus; &times; &divide; ^, with input validation</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Validated against</span><span class="plc-meta-value">3 independent reference calculators</span></div>
-              </div>
-              <div class="chip-row">
-                <span class="chip">Flowgorithm</span><span class="chip">Python</span><span class="chip">Stacks</span><span class="chip">Base conversion</span><span class="chip">Input validation</span>
-              </div>
-              <div class="plc-links">
-                <a class="cw-more" href="reports/number-systems-calculator-documentation.pdf" target="_blank" rel="noopener">View the documentation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-              </div>
             </div>
             <div class="plc-figure-row">
               <figure class="plc-figure">
@@ -274,6 +249,32 @@
                 <figcaption>Class diagram of the Main routine and its helper functions</figcaption>
               </figure>
             </div>
+          </div>
+          <!-- everything below runs the card's full width, under both columns above -->
+          <div class="calc-pipeline" aria-hidden="false">
+            <div class="calc-pipe-step" style="animation-delay:.03s"><b>Postfix / Prefix</b><span>input expression</span></div>
+            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <div class="calc-pipe-step" style="animation-delay:.08s"><b>Stack eval</b><span>resolves operators</span></div>
+            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <div class="calc-pipe-step" style="animation-delay:.13s"><b>Infix rebuild</b><span>fully parenthesized</span></div>
+            <svg class="calc-pipe-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <div class="calc-pipe-outputs">
+              <span class="calc-out-chip" style="animation-delay:.18s">BIN</span>
+              <span class="calc-out-chip" style="animation-delay:.21s">DEC</span>
+              <span class="calc-out-chip" style="animation-delay:.24s">HEX</span>
+              <span class="calc-out-chip" style="animation-delay:.27s">OCT</span>
+            </div>
+          </div>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Flowgorithm program, ported to Python + video walkthrough</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Operators</span><span class="plc-meta-value">+ &minus; &times; &divide; ^, with input validation</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Validated against</span><span class="plc-meta-value">3 independent reference calculators</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Flowgorithm</span><span class="chip">Python</span><span class="chip">Stacks</span><span class="chip">Base conversion</span><span class="chip">Input validation</span>
+          </div>
+          <div class="plc-links">
+            <a class="cw-more" href="reports/number-systems-calculator-documentation.pdf" target="_blank" rel="noopener">View the documentation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
           </div>
         </div>
         <div class="proj-list-card">
@@ -289,18 +290,6 @@
                 <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">SentryBand fuses heat-strain sensing (skin temperature and heart rate) with gas sensing (carbon monoxide, hydrogen sulfide, and combustible vapors) on an ESP32 microcontroller, checks every reading against the NIOSH heat framework and standard gas-exposure thresholds, and escalates from a vibration alert to a full vibration/LED/buzzer alarm with a Bluetooth Low Energy notification to the control-room dashboard &mdash; sealed in an IP65-rated housing, running a full watch on a rechargeable Li-ion battery.</span></div>
                 <div class="plc-stage"><span class="plc-stage-label">Benchmarked</span><span class="plc-stage-text">Positioned in the NABC pitch against the three categories already in use &mdash; fixed monitoring systems, portable gas detectors, and wearable health trackers &mdash; none of which combine continuous dual-hazard sensing with engine-room-rated (IP65) wear.</span></div>
               </div>
-              <div class="plc-meta">
-                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">APA 7 report + NABC pitch deck &amp; script</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Sensing</span><span class="plc-meta-value">Heat-strain (skin temp + heart rate) &amp; gas (CO, H&#8322;S, combustible vapors) on an ESP32</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Benchmarked against</span><span class="plc-meta-value">Fixed gas-monitoring systems &amp; the Honeywell BW Ultra</span></div>
-              </div>
-              <div class="chip-row">
-                <span class="chip">Technical writing</span><span class="chip">APA 7</span><span class="chip">NABC framework</span><span class="chip">Embedded sensing</span><span class="chip">IP65 design</span>
-              </div>
-              <div class="plc-links">
-                <a class="cw-more" href="reports/sentryband-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-                <a class="cw-more" href="reports/sentryband-nabc-pitch.pdf" target="_blank" rel="noopener">View the NABC pitch deck <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-              </div>
             </div>
             <div class="plc-figure-row">
               <figure class="plc-figure">
@@ -312,6 +301,18 @@
                 <figcaption>Competitive positioning from the NABC pitch</figcaption>
               </figure>
             </div>
+          </div>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">APA 7 report + NABC pitch deck &amp; script</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Sensing</span><span class="plc-meta-value">Heat-strain (skin temp + heart rate) &amp; gas (CO, H&#8322;S, combustible vapors) on an ESP32</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Benchmarked against</span><span class="plc-meta-value">Fixed gas-monitoring systems &amp; the Honeywell BW Ultra</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Technical writing</span><span class="chip">APA 7</span><span class="chip">NABC framework</span><span class="chip">Embedded sensing</span><span class="chip">IP65 design</span>
+          </div>
+          <div class="plc-links">
+            <a class="cw-more" href="reports/sentryband-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            <a class="cw-more" href="reports/sentryband-nabc-pitch.pdf" target="_blank" rel="noopener">View the NABC pitch deck <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
           </div>
         </div>
         <div class="proj-list-card">
@@ -344,14 +345,6 @@
                   <p>The fastest available feedback loop of tribal knowledge &mdash; a redundant path around slower official channels.</p>
                 </div>
               </div>
-              <div class="plc-meta">
-                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Scripted interview-style video, ~6&ndash;7 min</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Engineering frames used</span><span class="plc-meta-value">Feedback loops &middot; scheduling &middot; critical path &middot; redundancy</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Rubric</span><span class="plc-meta-value">4 required discussion questions</span></div>
-              </div>
-              <div class="chip-row">
-                <span class="chip">Systems thinking</span><span class="chip">Communication</span><span class="chip">Video production</span>
-              </div>
             </div>
             <div class="plc-figure-row">
               <figure class="plc-figure">
@@ -359,6 +352,14 @@
                 <figcaption>An excerpt from the interview script</figcaption>
               </figure>
             </div>
+          </div>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Scripted interview-style video, ~6&ndash;7 min</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Engineering frames used</span><span class="plc-meta-value">Feedback loops &middot; scheduling &middot; critical path &middot; redundancy</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Rubric</span><span class="plc-meta-value">4 required discussion questions</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Systems thinking</span><span class="chip">Communication</span><span class="chip">Video production</span>
           </div>
         </div>
         <div class="proj-list-card">
@@ -374,28 +375,24 @@
                 <div class="plc-stage"><span class="plc-stage-label">The approach</span><span class="plc-stage-text">Traced the cycle chemically: positive/negative photoresist chemistry in photolithography, diffusion vs. ion-implantation doping, and wet vs. dry (plasma) etching &mdash; then worked the Rayleigh criterion to show why EUV's 13.5&nbsp;nm wavelength prints ~3.5&times; smaller features than 193&nbsp;nm DUV, and the implant-dose equation to show why independently-tunable dose and depth displaced diffusion for critical junctions.</span></div>
                 <div class="plc-stage"><span class="plc-stage-label">Why it matters</span><span class="plc-stage-text">Closes on the environmental cost &mdash; about 185M tons CO&#8322;-equivalent a year, roughly half of per-wafer chemical use from wet processing &mdash; and why that chemistry sets a hard ceiling on chip cost, performance, and where fabs can be built.</span></div>
               </div>
-              <div class="plc-meta">
-                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">18-slide technical presentation</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Worked calculations</span><span class="plc-meta-value">Rayleigh criterion (CD = k&#8321;&middot;&lambda;/NA) &amp; implant dose (Q = It/qA)</span></div>
-                <div class="plc-meta-item"><span class="plc-meta-label">Covers</span><span class="plc-meta-value">Photolithography &middot; doping &middot; wet &amp; dry etching &middot; environmental cost</span></div>
-              </div>
-              <div class="chip-row">
-                <span class="chip">Semiconductor chemistry</span><span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span><span class="chip">Technical presentation</span>
-              </div>
-              <div class="plc-links">
-                <a class="cw-more" href="reports/cm011-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-              </div>
             </div>
             <div class="plc-figure-row">
               <figure class="plc-figure">
                 <img src="images/cm011-fabrication-cycle-diagram.jpg" alt="The fabrication cycle: Deposit, Pattern, Etch, Dope &mdash; repeated 30 to 100+ times to build a single chip" loading="lazy" width="1100" height="507">
                 <figcaption>The four-step cycle, repeated per wafer</figcaption>
               </figure>
-              <figure class="plc-figure">
-                <img src="images/cm011-rayleigh-criterion-diagram.jpg" alt="Rayleigh criterion worked calculation: CD = k1 x (lambda/NA); ArF immersion DUV at 193nm prints 42.9nm features, EUV lithography at 13.5nm prints 12.3nm features" loading="lazy" width="1100" height="507">
-                <figcaption>The Rayleigh-criterion calculation, worked out</figcaption>
-              </figure>
             </div>
+          </div>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">18-slide technical presentation</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Worked calculations</span><span class="plc-meta-value">Rayleigh criterion (CD = k&#8321;&middot;&lambda;/NA) &amp; implant dose (Q = It/qA)</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Covers</span><span class="plc-meta-value">Photolithography &middot; doping &middot; wet &amp; dry etching &middot; environmental cost</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Semiconductor chemistry</span><span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span><span class="chip">Technical presentation</span>
+          </div>
+          <div class="plc-links">
+            <a class="cw-more" href="reports/cm011-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
           </div>
         </div>
       </div>
@@ -979,7 +976,7 @@
   <button type="button" class="imgbox-close" id="imgboxClose" aria-label="Close image">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
   </button>
-  <img class="imgbox-img" id="imgboxImg" src="" alt="">
+  <img class="imgbox-img" id="imgboxImg" alt="">
   <p class="imgbox-caption" id="imgboxCaption"></p>
 </dialog>
 

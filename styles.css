@@ -364,8 +364,22 @@
   .proj-list-card h3{font-size:19px;font-weight:800;margin:8px 0 8px;}
   .proj-list-card p{color:var(--ink-soft);font-size:14px;line-height:1.6;margin:0 0 12px;max-width:640px;}
   /* optional figure inside a project card -- floats right on wide screens, stacks on top on narrow ones */
-  .plc-body{display:flex;gap:22px;align-items:flex-start;}
-  .plc-figure{flex:none;width:180px;border-radius:12px;overflow:hidden;border:1px solid var(--panel-border);background:var(--chip-bg);}
+  /* .plc-body only holds the two-column part of a card (problem/approach
+     text beside its figure). The pipeline diagram, the format/meta box,
+     the chip row and the report links all come AFTER it as full-width
+     siblings that run the card's whole width under both columns -- see
+     index.html. Keeping them out of .plc-text (which is intentionally
+     capped at a 640px reading measure) is what stops the meta box from
+     stopping short of the figure column and leaving a gap of bare card
+     background between the two. */
+  .plc-body{display:flex;gap:22px;align-items:flex-start;margin-bottom:18px;}
+  /* <figure> carries a browser default margin (1em 40px) that was never
+     reset here -- harmless while figures stacked in a narrow column, but
+     the moment two sit side by side that left/right 40px margin (80px
+     per pair, on top of the 14px flex gap) pushes the second one straight
+     past the card's edge. margin:0 is the actual fix; everything else in
+     this rule is unchanged. */
+  .plc-figure{flex:none;width:180px;margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--panel-border);background:var(--chip-bg);}
   /* a couple of the source images (an infographic in particular) are tall
      portrait shots -- at the figure column's width that renders much
      taller than the text sitting next to it, leaving a slab of empty card
@@ -444,9 +458,17 @@
   @media (max-width:560px){.plc-stage{flex-direction:column;gap:2px;}.plc-stage-label{width:auto;}}
 
   /* stacked two-figure gallery variant of .plc-figure, used when a card has two images */
-  .plc-figure-row{display:flex;gap:14px;flex:none;width:220px;flex-direction:column;}
-  .plc-figure-row .plc-figure{width:100%;}
-  @media (max-width:700px){.plc-figure-row{width:100%;max-width:340px;flex-direction:row;flex-wrap:wrap;}.plc-figure-row .plc-figure{width:calc(50% - 7px);}}
+  /* A card's figure column now sits beside only the intro/stage text (the
+     pipeline/meta/chips/links moved below, full-width -- see .plc-body).
+     That text column is short, so two images stacked in a single narrow
+     220px-wide file column used to run far taller than it and leave a
+     bare gap below the text before the full-width section began. Placing
+     two images side by side instead keeps the whole figure column close
+     to the same height as the text next to it; a card with only one
+     image (:only-child) still gets the full 340px width to itself. */
+  .plc-figure-row{display:flex;gap:14px;flex:none;width:340px;flex-direction:row;flex-wrap:nowrap;}
+  .plc-figure-row .plc-figure{width:calc(50% - 7px);min-width:0;}
+  .plc-figure-row .plc-figure:only-child{width:100%;}
   @media (max-width:460px){.plc-figure-row{flex-direction:column;}.plc-figure-row .plc-figure{width:100%;max-width:280px;}}
 
   /* Number Systems calculator: built pipeline diagram (source has no diagram asset) */
