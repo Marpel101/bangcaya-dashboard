@@ -63,10 +63,14 @@
    center is closest to the middle of the visible mask and marks that one
    .is-active, so whichever photo is passing through the middle pops up
    larger -- like a coverflow/carousel -- while the rest sit smaller and
-   dimmed. The caption swaps to match whichever card is active. Every
-   entry here is a real, distinct place or moment -- never the same photo
-   twice in the underlying list, only the one intentional full-list
-   repeat that makes the scroll loop invisible.
+   dimmed. Each card carries its OWN caption directly under its own photo
+   (see the markup below) instead of one shared caption line, so the
+   label always stays correctly aligned under the picture it names as the
+   strip slides -- the active one's caption just gets bolder/larger in
+   place rather than swapping out a separate element. Every entry here is
+   a real, distinct place or moment -- never the same photo twice in the
+   underlying list, only the one intentional full-list repeat that makes
+   the scroll loop invisible.
    NOTE: no loading="lazy" here on purpose -- these cards sit in a track
    that's moved with a CSS transform, not real scrolling, so the browser's
    viewport-intersection lazy loader never "sees" the later cards and
@@ -84,12 +88,11 @@
   var frag = '';
   for (var reps=0; reps<2; reps++){
     photos.forEach(function(p){
-      frag += '<div class="jpc-card" data-cap="'+p.cap+'"><img src="'+p.src+'" alt="'+p.alt+'"></div>';
+      frag += '<div class="jpc-card"><div class="jpc-photo"><img src="'+p.src+'" alt="'+p.alt+'"></div><span class="jpc-cap">'+p.cap+'</span></div>';
     });
   }
   var track = document.getElementById('journeyPhotoTrack');
   var mask = track ? track.parentElement : null;
-  var caption = document.getElementById('journeyPhotoCaption');
   if (!track || !mask) return;
   track.innerHTML = frag;
 
@@ -110,7 +113,6 @@
     if (closest && closest !== lastActive){
       if (lastActive) lastActive.classList.remove('is-active');
       closest.classList.add('is-active');
-      if (caption) caption.textContent = closest.getAttribute('data-cap') || '';
       lastActive = closest;
     }
   }
