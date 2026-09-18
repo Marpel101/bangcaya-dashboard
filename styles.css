@@ -440,10 +440,11 @@
      only flex:1 with no cap of its own -- on a wide card that let it grow
      far past its own content's width, opening a wide dead gap between the
      end of the paragraph/chips and the figure column pinned to the right.
-     Capping .plc-text at the same 640px keeps the text and its figures as
-     one tight, intentionally-composed block instead of two pieces
-     stranded across a too-wide row. */
-  .plc-text{flex:1;min-width:0;max-width:640px;}
+     Capping .plc-text at 760px keeps it from over-growing on its own, but
+     -- see .plc-figure-row below -- both columns now grow together on wide
+     cards instead of leaving raw card background after a fixed-width
+     figure column. */
+  .plc-text{flex:1 1 400px;min-width:0;max-width:760px;}
   @media (max-width:700px){.plc-body{flex-direction:column;}.plc-figure{width:100%;max-width:280px;}}
   /* small "jump to the related page" link at the bottom of a coursework card */
   .cw-more{display:inline-flex;align-items:center;gap:5px;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--accent-text);text-decoration:none;}
@@ -477,6 +478,58 @@
   .plc-figure-row .plc-figure{width:calc(50% - 7px);min-width:0;}
   .plc-figure-row .plc-figure:only-child{width:100%;}
   @media (max-width:460px){.plc-figure-row{flex-direction:column;}.plc-figure-row .plc-figure{width:100%;max-width:280px;}}
+  /* Calculator, SentryBand and CM011 each carry a single image, so the row
+     above matches its :only-child branch (width:100% of a row fixed at
+     340px). That fixed width never grew with the card, so on a wide
+     viewport (.shell's clamp lets the card reach ~1248-1300px past roughly
+     1780px wide -- an ordinary desktop browser width, not an edge case)
+     it left a widening strip of bare card background between the image
+     and the card's right edge. Grow this row together with .plc-text
+     (same flex-grow, its own smaller cap) instead of leaving it fixed,
+     and let the figure hug the image's own aspect ratio rather than
+     stretching to the row's full width -- object-fit:contain was centering
+     a narrower portrait image inside a box that itself wasn't reaching the
+     card edge, doubling up the same gap in two places. Hugging the image
+     and centering it in the grown row folds both into one, and raising
+     the height ceiling renders every image meaningfully bigger than the
+     old 300px cap allowed. */
+  .plc-figure-row:has(.plc-figure:only-child){flex:1 1 300px;width:auto;max-width:420px;justify-content:center;align-self:center;}
+  /* Growing the row solved the "empty space beside the image" gap, but a
+     flat height on every card let the image render taller than its own
+     short text column (CM011's few lines beside a tall picture) -- a big
+     picture next to short copy reads as unbalanced, not "adjusted". A
+     pure-CSS row can't see its sibling .plc-text's rendered height, so
+     script.js PART 7 measures it (clamped 200-460px) and writes that
+     number into this variable per card, per breakpoint; the 320px here is
+     only the fallback for the instant before that first measurement runs.
+     Giving the row an explicit height:var(...) -- not just a max-height --
+     is what makes .plc-figure's height:100% below actually definite
+     (a percentage height on a box whose container only has a *max*-height
+     resolves to auto, not to that cap, so the image would go right back
+     to sizing itself off its own aspect ratio instead of the text next to
+     it). A card with more copy beside it ends up with a taller image; a
+     short card gets a smaller one -- proportionate, not uniformly maxed. */
+  .plc-body:has(.plc-figure-row .plc-figure:only-child){--figure-h:320px;}
+  .plc-figure-row:has(.plc-figure:only-child){height:var(--figure-h,320px);}
+  .plc-figure-row:has(.plc-figure:only-child) .plc-figure:only-child{width:auto;max-width:100%;height:100%;display:flex;flex-direction:column;}
+  /* script.js PART 6 wraps every .plc-figure img in an .imgzoom-trigger
+     button (the click-to-zoom affordance), so the image itself is a
+     grandchild of .plc-figure, not a direct flex child of the column
+     above -- flex-sizing the img directly did nothing, since only the
+     figure's *direct* children (the button, then <figcaption>) are flex
+     items. Flex-sizing the button instead (flex:1 1 0, min-height:0) gives
+     it the exact space left over after the caption -- a definite height a
+     nested img can then fill via height:100% and letterbox properly with
+     object-fit:contain, rather than sizing itself off its own aspect ratio
+     and overflowing past the row (the bug the first version of this rule
+     had: the image ignored its box and ran past the card's own edges). */
+  .plc-figure-row:has(.plc-figure:only-child) .plc-figure:only-child .imgzoom-trigger{flex:1 1 0;min-height:0;height:auto;}
+  /* .plc-figure img (above) carries a universal max-height:300px meant for
+     the old fixed-size figure column -- left alone, that same-specificity-
+     tier rule keeps winning the cascade for this one property no matter
+     what's declared here, freezing every card's image at ~300px regardless
+     of --figure-h. max-height:none clears it. */
+  .plc-figure-row:has(.plc-figure:only-child) .plc-figure:only-child img{width:100%;height:100%;max-height:none;object-fit:contain;}
 
   /* Number Systems calculator: built pipeline diagram (source has no diagram asset) */
   .calc-pipeline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 16px 14px;background:var(--chip-bg);border-radius:12px;margin:0 0 14px;}

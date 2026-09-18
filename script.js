@@ -422,3 +422,49 @@
     btn.addEventListener('click', function(){ openImgbox(img, btn); });
   });
 })();
+
+/* PART 7: size a project card's single-image figure column to match the
+   text column sitting next to it (see .plc-figure-row's --figure-h rule in
+   styles.css). CSS alone can't read a sibling's rendered height, so this
+   measures .plc-text on every card that has exactly one figure and writes
+   the result into that card's --figure-h custom property -- a card with
+   three long paragraphs gets a proportionately taller image, a card with
+   one short one doesn't get an image that dwarfs it. Skipped below the
+   700px breakpoint, where .plc-body stacks to a single column and the
+   figure runs full-width under the text instead of beside it. */
+(function(){
+  var pairs = Array.prototype.slice.call(document.querySelectorAll('.plc-body'))
+    .map(function(body){
+      var text = body.querySelector('.plc-text');
+      var row = body.querySelector('.plc-figure-row');
+      var only = row && row.querySelector('.plc-figure:only-child');
+      return (text && row && only) ? { body: body, text: text } : null;
+    })
+    .filter(Boolean);
+  if (!pairs.length) return;
+
+  function sync(){
+    var stacked = window.innerWidth <= 700;
+    pairs.forEach(function(p){
+      if (stacked) { p.body.style.removeProperty('--figure-h'); return; }
+      var h = p.text.getBoundingClientRect().height;
+      if (h < 1) return; // card's view is hidden -- nothing to measure yet
+      h = Math.max(200, Math.min(460, Math.round(h)));
+      p.body.style.setProperty('--figure-h', h + 'px');
+    });
+  }
+
+  sync();
+  window.addEventListener('resize', sync);
+  window.addEventListener('load', sync);
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(sync);
+    pairs.forEach(function(p){ ro.observe(p.text); });
+  }
+  // re-measure whenever the Projects view is switched to -- its cards are
+  // display:none (via [hidden]) until then, so any earlier attempt to
+  // read .plc-text's height would have measured zero.
+  document.querySelectorAll('[data-view="projects"]').forEach(function(a){
+    a.addEventListener('click', function(){ setTimeout(sync, 0); });
+  });
+})();
