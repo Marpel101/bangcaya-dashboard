@@ -590,19 +590,33 @@
      to spare. each card carries its own caption directly under its own
      photo (instead of one shared caption line below the whole strip) so
      the label always stays correctly aligned under the picture it names,
-     card by card, as the strip slides and the active one changes. */
-  .journey-photo-coverflow{flex:none;width:clamp(460px,36vw,560px);}
+     card by card, as the strip slides and the active one changes.
+     card/mask sizing note: .jpc-mask's height used to be a flat 380px --
+     comfortably taller than a card ever actually needs (a 240px photo +
+     caption, plus the ~67px the active card's photo grows upward by when
+     it scales to 1.28x from its own bottom edge, tops out around 320px),
+     so .jpc-track's align-items:flex-end (bottom-anchoring every card, so
+     the active one's growth reads as "rising up" rather than the row
+     jumping around) left 60-100px of dead air sitting above the photos
+     that nothing ever used -- that's what read as "big space" with the
+     images hanging low in their box. Sizing the mask to content+growth
+     plus a small top margin (instead of an arbitrary round number) and
+     shrinking the cards themselves closes that gap and gives the row a
+     shorter, better-matched-to-the-text cross size, so the outer
+     align-items:center on .about-journey-row now centers a noticeably
+     smaller widget instead of a nearly-text-height one. */
+  .journey-photo-coverflow{flex:none;width:clamp(400px,30vw,480px);}
   .jpc-mask{
-    position:relative;width:100%;height:380px;overflow:hidden;display:flex;align-items:flex-end;
+    position:relative;width:100%;height:316px;overflow:hidden;display:flex;align-items:flex-end;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
     mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   }
-  .jpc-track{display:flex;align-items:flex-end;gap:28px;width:max-content;animation:jpcMove 30s linear infinite;}
+  .jpc-track{display:flex;align-items:flex-end;gap:22px;width:max-content;animation:jpcMove 30s linear infinite;}
   @media (prefers-reduced-motion: reduce){.jpc-track{animation:none;}}
   @keyframes jpcMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .jpc-card{flex:none;width:190px;display:flex;flex-direction:column;align-items:center;gap:13px;}
+  .jpc-card{flex:none;width:165px;display:flex;flex-direction:column;align-items:center;gap:12px;}
   .jpc-photo{
-    width:190px;height:240px;border-radius:20px;overflow:hidden;
+    width:165px;height:210px;border-radius:18px;overflow:hidden;
     background:var(--chip-bg);border:1px solid var(--panel-border);box-shadow:var(--shadow);
     transform:scale(1);transform-origin:50% 100%;opacity:.64;
     transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s ease,box-shadow .5s ease;
@@ -628,7 +642,7 @@
        behavior here -- the vertical nudge above is a desktop-only
        (side-by-side) adjustment, not meant to change the stacked view */
     .about-journey-row{flex-direction:column;align-items:stretch;}
-    .journey-photo-coverflow{width:100%;max-width:520px;margin:8px auto 0;}
+    .journey-photo-coverflow{width:100%;max-width:460px;margin:8px auto 0;}
   }
   .plc-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin:0 0 14px;padding:12px 14px;background:var(--chip-bg);border-radius:12px;}
   .plc-meta-item{display:flex;flex-direction:column;gap:3px;min-width:150px;}
