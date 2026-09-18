@@ -375,7 +375,15 @@
      set the whole card's height. */
   .plc-figure img{display:block;width:100%;height:auto;max-height:300px;object-fit:contain;}
   .plc-figure figcaption{font-size:10.5px;color:var(--ink-mute);padding:6px 8px;line-height:1.4;}
-  .plc-text{flex:1;min-width:0;}
+  /* every child inside .plc-text (.plc-intro, .plc-stages, .plc-meta) is
+     already capped at a 640px reading measure, but .plc-text itself was
+     only flex:1 with no cap of its own -- on a wide card that let it grow
+     far past its own content's width, opening a wide dead gap between the
+     end of the paragraph/chips and the figure column pinned to the right.
+     Capping .plc-text at the same 640px keeps the text and its figures as
+     one tight, intentionally-composed block instead of two pieces
+     stranded across a too-wide row. */
+  .plc-text{flex:1;min-width:0;max-width:640px;}
   @media (max-width:700px){.plc-body{flex-direction:column;}.plc-figure{width:100%;max-width:280px;}}
   /* small "jump to the related page" link at the bottom of a coursework card */
   .cw-more{display:inline-flex;align-items:center;gap:5px;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--accent-text);text-decoration:none;}
