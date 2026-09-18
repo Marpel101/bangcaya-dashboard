@@ -486,11 +486,6 @@
   .plc-meta-label{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-mute);}
   .plc-meta-value{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.4;}
   @media (max-width:520px){.plc-meta{gap:10px 18px;}.plc-meta-item{min-width:120px;}}
-  .page-cta{
-    margin-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
-    background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:18px 22px;box-shadow:var(--shadow);
-    font-size:14.5px;font-weight:700;
-  }
 
   /* --- Skills page --- */
   .skills-page-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--panel-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
@@ -559,7 +554,12 @@
   .about-fact-icon{width:28px;height:28px;border-radius:9px;background:var(--chip-bg);color:var(--accent);display:flex;align-items:center;justify-content:center;}
   .about-fact-icon svg{width:14px;height:14px;}
   .about-fact-label{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:4px;}
-  .about-fact-value{display:block;font-size:13.5px;font-weight:700;line-height:1.4;}
+  /* headline value (the thing itself -- role, program, product name) plus an
+     optional second line giving it context (where/how) in a lighter weight,
+     rather than running both together as one comma-separated sentence */
+  .about-fact-value{display:flex;flex-direction:column;gap:3px;}
+  .about-fact-value-main{font-size:13.5px;font-weight:700;line-height:1.4;color:var(--ink);}
+  .about-fact-value-sub{font-size:12px;font-weight:600;line-height:1.35;color:var(--ink-mute);}
 
   /* --- Contact page --- */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:780px;align-items:stretch;}
@@ -572,7 +572,14 @@
   .contact-main .chip-row{margin-top:0;}
   .contact-email{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);}
   .contact-note{font-size:12.5px;color:var(--ink-mute);line-height:1.5;}
-  .contact-channels{display:flex;flex-direction:column;gap:2px;background:var(--panel-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
+  /* the grid beside it stretches this card to match the message card's
+     height (align-items:stretch on .contact-grid, so the two columns'
+     bottoms line up) -- five rows don't fill that on their own, and left
+     as a plain flex-start column that left a dead strip of the container's
+     own background showing at the bottom, like an empty sixth row. space
+     the rows out to fill the height instead so the extra room reads as
+     intentional breathing space between channels, not a stray gap. */
+  .contact-channels{display:flex;flex-direction:column;justify-content:space-between;gap:2px;background:var(--panel-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
   .contact-row{
     background:var(--panel);padding:14px 18px;display:flex;align-items:center;gap:12px;
     text-decoration:none;color:var(--ink);transition:background .2s ease,padding-left .2s ease;
