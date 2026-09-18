@@ -86,7 +86,23 @@
   .sidebar{
     width:240px;flex:none;padding:28px 20px;display:flex;flex-direction:column;
     background:var(--sidebar-bg);position:sticky;top:0;align-self:flex-start;height:100vh;
+    overflow-y:auto;
   }
+  /* the Light/Dark toggle + copyright block at the bottom (.theme-toggle has
+     margin-top:auto, which pushes it -- and everything after it -- all the
+     way down) relies on the sidebar being exactly one viewport tall. on a
+     short window (a laptop with a lot of browser chrome, a landscape tablet,
+     etc.) the avatar+name+socials+nav can be taller than that, and without
+     this the toggle/footer would just get pushed off the bottom edge with no
+     way to reach them. overflow-y:auto turns that into an internal scroll
+     instead, so the bottom block adapts to whatever height is actually
+     available rather than disappearing. a thin, theme-matched scrollbar so
+     it doesn't look like a stock browser bar when it does kick in. */
+  .sidebar::-webkit-scrollbar{width:6px;}
+  .sidebar::-webkit-scrollbar-track{background:transparent;}
+  .sidebar::-webkit-scrollbar-thumb{background:var(--panel-border);border-radius:999px;}
+  .sidebar::-webkit-scrollbar-thumb:hover{background:var(--ink-mute);}
+  .sidebar{scrollbar-width:thin;scrollbar-color:var(--panel-border) transparent;}
   .avatar-wrap{position:relative;width:92px;height:92px;margin-bottom:16px;}
   .avatar-wrap img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
   .verified{
