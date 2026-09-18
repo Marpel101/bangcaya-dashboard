@@ -56,13 +56,17 @@
   }
 })();
 
-/* PART 1B: the scrolling photo strip below the Personal Journey text on
-   the About page -- same seamless-loop technique as the tools ticker
-   above (list once, render it twice, animate by exactly -50%), sliding
-   horizontally the same way the tools row does. Every entry here is a
-   real, distinct place or moment -- never the same photo twice in the
-   underlying list, only the one intentional full-list repeat that makes
-   the scroll loop invisible.
+/* PART 1B: the coverflow-style photo widget next to the Personal Journey
+   text on the About page. Same seamless-loop sliding technique as the
+   tools ticker above (list once, render it twice, animate by exactly
+   -50%), plus a small watcher: every ~120ms it checks which card's
+   center is closest to the middle of the visible mask and marks that one
+   .is-active, so whichever photo is passing through the middle pops up
+   larger -- like a coverflow/carousel -- while the rest sit smaller and
+   dimmed. The caption swaps to match whichever card is active. Every
+   entry here is a real, distinct place or moment -- never the same photo
+   twice in the underlying list, only the one intentional full-list
+   repeat that makes the scroll loop invisible.
    NOTE: no loading="lazy" here on purpose -- these cards sit in a track
    that's moved with a CSS transform, not real scrolling, so the browser's
    viewport-intersection lazy loader never "sees" the later cards and
@@ -80,11 +84,38 @@
   var frag = '';
   for (var reps=0; reps<2; reps++){
     photos.forEach(function(p){
-      frag += '<div class="jpt-card"><div class="jpt-card-photo"><img src="'+p.src+'" alt="'+p.alt+'"></div><span class="jpt-cap">'+p.cap+'</span></div>';
+      frag += '<div class="jpc-card" data-cap="'+p.cap+'"><img src="'+p.src+'" alt="'+p.alt+'"></div>';
     });
   }
   var track = document.getElementById('journeyPhotoTrack');
-  if (track) track.innerHTML = frag;
+  var mask = track ? track.parentElement : null;
+  var caption = document.getElementById('journeyPhotoCaption');
+  if (!track || !mask) return;
+  track.innerHTML = frag;
+
+  var cards = Array.prototype.slice.call(track.querySelectorAll('.jpc-card'));
+  var lastActive = null;
+  function tick(){
+    if (!cards.length) return;
+    var maskRect = mask.getBoundingClientRect();
+    if (maskRect.width === 0){ return; } // view is hidden, skip work
+    var centerX = maskRect.left + maskRect.width / 2;
+    var closest = null, closestDist = Infinity;
+    cards.forEach(function(card){
+      var r = card.getBoundingClientRect();
+      var cardCenter = r.left + r.width / 2;
+      var dist = Math.abs(cardCenter - centerX);
+      if (dist < closestDist){ closestDist = dist; closest = card; }
+    });
+    if (closest && closest !== lastActive){
+      if (lastActive) lastActive.classList.remove('is-active');
+      closest.classList.add('is-active');
+      if (caption) caption.textContent = closest.getAttribute('data-cap') || '';
+      lastActive = closest;
+    }
+  }
+  tick();
+  setInterval(tick, 120);
 })();
 
 /* PART 2: page switching. all 6 pages already exist in index.html, just
