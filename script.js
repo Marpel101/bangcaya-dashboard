@@ -187,13 +187,17 @@
 })();
 
 /* PART 2.5: stop the floating "Get in touch" button from covering other
-   links. it's fixed bottom-right on every page, which is fine until real
-   content (the Contact email list on mobile, a "View all" link at some
-   widths) lands in that same spot and becomes unclickable underneath it.
-   tried hardcoding spacing for this first but it kept breaking whenever
-   content changed, so instead: check what's actually near the button on
-   every scroll/resize, and if it overlaps something clickable, fade the
-   button out and turn off its clicks until it doesn't anymore. */
+   links -- or other content worth seeing in full. it's fixed bottom-right
+   on every page, which is fine until real content (the Contact email list
+   on mobile, a "View all" link at some widths, or one of the project
+   screenshots in the Projects page's right-hand figure column, which sits
+   in that same bottom-right corner as you scroll past it) lands in that
+   same spot and either becomes unclickable or gets visually covered
+   underneath it. tried hardcoding spacing for this first but it kept
+   breaking whenever content changed, so instead: check what's actually
+   near the button on every scroll/resize, and if it overlaps something
+   clickable or a figure image, fade the button out and turn off its
+   clicks until it doesn't anymore. */
 (function(){
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.get-touch'));
   if (!buttons.length) return;
@@ -210,7 +214,7 @@
 
     var view = btn.closest('.view');
     if (!view) return;
-    var candidates = view.querySelectorAll('a, button');
+    var candidates = view.querySelectorAll('a, button, .plc-figure, .jpc-card');
     var blocked = false;
     for (var i = 0; i < candidates.length; i++){
       var el = candidates[i];
