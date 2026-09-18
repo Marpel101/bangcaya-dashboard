@@ -118,7 +118,7 @@
 
   // open straight to e.g. #credentials if the URL has it, else Home
   var initial = (location.hash || '').replace('#','');
-  var valid = ['home','about','projects','skills','credentials','contact'];
+  var valid = ['home','about','projects','coursework','journey','skills','credentials','contact'];
   showView(valid.indexOf(initial) !== -1 ? initial : 'home');
 })();
 

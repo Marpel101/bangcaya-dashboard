@@ -45,7 +45,9 @@
     <nav class="side-nav" id="side-nav">
       <a href="#home" data-view="home" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9.5a1 1 0 0 0 1 1h3.5v-6h3v6H17a1 1 0 0 0 1-1V10"/></svg>Home</a>
       <a href="#about" data-view="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>About</a>
+      <a href="#coursework" data-view="coursework"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 3.5 20.5 9.5M17.7 6.3 8.3 15.7a2 2 0 0 0-.5.9L7 20l3.4-.8a2 2 0 0 0 .9-.5L20.7 9.3a2 2 0 0 0 0-2.8l-.2-.2a2 2 0 0 0-2.8 0Z"/></svg>Coursework</a>
       <a href="#projects" data-view="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 7.5a1 1 0 0 1 1-1H9l1.6 2h9a1 1 0 0 1 1 1v8.5a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1V7.5Z"/></svg>Projects</a>
+      <a href="#journey" data-view="journey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m14.8 9.2-1.4 4.2-4.2 1.4 1.4-4.2 4.2-1.4Z"/></svg>Personal Journey</a>
       <a href="#skills" data-view="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M17.8 6.2l-1.5 1.5M7.7 16.3l-1.5 1.5M17.8 17.8l-1.5-1.5M7.7 7.7 6.2 6.2"/></svg>Skills</a>
       <a href="#credentials" data-view="credentials"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg>Credentials</a>
       <a href="#contact" data-view="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 2"/></svg>Contact</a>
@@ -79,7 +81,7 @@
     <div class="view" id="view-home">
     <div class="hero-top">
       <!-- eyebrow-break forces a clean line split on mobile instead of a random wrap; eyebrow-sep is the dot separator, hidden on mobile since the line break does that job instead -->
-      <div class="eyebrow">4th Engineer · Merchant Marine<span class="eyebrow-sep"> ·</span><br class="eyebrow-break"> BS Computer Engineering — In Progress</div>
+      <div class="eyebrow">4th Engineer · Merchant Marine<span class="eyebrow-sep"> ·</span><br class="eyebrow-break"> BS Computer Engineering, 1st Year</div>
       <a class="get-touch" href="#contact" data-view="contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </div>
     <h1 class="hero-head">Systems that watch over the people who watch the systems.</h1>
@@ -111,7 +113,7 @@
             <span class="proj-thumb-led" aria-hidden="true" title="Live monitoring indicator"></span>
           </div>
           <div class="proj-name">SentryBand — case study</div>
-          <div class="proj-meta">GED104 · NABC pitch + technical report</div>
+          <div class="proj-meta">GED106 · NABC pitch + technical report</div>
         </div>
 
         <div class="bcard about" id="about">
@@ -131,16 +133,17 @@
           <div class="bcard-head">
             <span class="bicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 3.5 20.5 9.5M17.7 6.3 8.3 15.7a2 2 0 0 0-.5.9L7 20l3.4-.8a2 2 0 0 0 .9-.5L20.7 9.3a2 2 0 0 0 0-2.8l-.2-.2a2 2 0 0 0-2.8 0Z"/></svg></span>
             <span class="bcard-title">Coursework</span>
+            <a class="bcard-view" href="#coursework" data-view="coursework">View all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
           </div>
           <div class="bcard-desc">Real deliverables, not just exercises.</div>
           <div class="coursework-infolist">
             <div class="cw-row">
               <span class="cw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9 4 12l4 3M16 9l4 3-4 3M13 6l-2 12"/></svg></span>
-              <span class="cw-text"><span class="cw-title">Number Systems &amp; Notations Calculator</span><span class="cw-code">CPE102 &middot; Flowgorithm &rarr; Python</span></span>
+              <span class="cw-text"><span class="cw-title">Number Systems &amp; Notations Calculator</span><span class="cw-code">CPE102L-4 &middot; Flowgorithm &rarr; Python</span></span>
             </div>
             <div class="cw-row">
               <span class="cw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3.5h9l3 3V20a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5Z"/><path d="M9 12h6M9 15.5h6M9 8.5h3"/></svg></span>
-              <span class="cw-text"><span class="cw-title">SentryBand Technical Report</span><span class="cw-code">GED104 &middot; APA 7 report + NABC pitch</span></span>
+              <span class="cw-text"><span class="cw-title">SentryBand Technical Report</span><span class="cw-code">GED106 &middot; APA 7 report + NABC pitch</span></span>
             </div>
             <div class="cw-row">
               <span class="cw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5.5" width="17" height="12" rx="1.5"/><path d="M10 10.2v4.1l3.6-2.05L10 10.2ZM8 20h8"/></svg></span>
@@ -188,6 +191,7 @@
           <div class="bcard-head">
             <span class="bicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m14.8 9.2-1.4 4.2-4.2 1.4 1.4-4.2 4.2-1.4Z"/></svg></span>
             <span class="bcard-title">Journey</span>
+            <a class="bcard-view" href="#journey" data-view="journey">View all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
           </div>
           <div class="bcard-desc">Where I've been and where I'm headed.</div>
           <div class="journey-list">
@@ -218,12 +222,12 @@
       <div class="page-head">
         <div class="eyebrow">Projects</div>
         <h1 class="page-title">Real coursework, not just exercises.</h1>
-        <p class="page-sub">Three deliverables from CpE coursework so far &mdash; each one a working artifact, not just a grade.</p>
+        <p class="page-sub">Four deliverables from CpE coursework so far &mdash; each one a working artifact, not just a grade.</p>
       </div>
       <div class="proj-list">
         <div class="proj-list-card">
           <div class="plc-top">
-            <span class="eyebrow">CPE102 &mdash; Programming Logic &amp; Design</span>
+            <span class="eyebrow">CPE102L-4 &mdash; Programming Logic &amp; Design</span>
           </div>
           <h3>Number Systems &amp; Notations Calculator</h3>
           <p>Takes a postfix or prefix expression, evaluates it with a stack, reconstructs the fully-parenthesized infix version, and converts the result into decimal, binary, hexadecimal, and octal &mdash; one pipeline instead of four separate tools. Rejects malformed input with a retry instead of crashing, carries negative results through every base correctly, and every test case was cross-checked live against three independent reference sites (a notation visualizer, a stack visualizer, and a hex converter) until all three matched.</p>
@@ -238,17 +242,25 @@
         </div>
         <div class="proj-list-card">
           <div class="plc-top">
-            <span class="eyebrow">GED104 &mdash; Purposive Communication</span>
+            <span class="eyebrow">GED106 &mdash; Purposive Communication</span>
           </div>
           <h3>SentryBand Technical Report</h3>
-          <p>A wrist-worn safety concept for the engineers and oilers standing watch in a ship's engine room, developed as an APA&nbsp;7 technical report and a NABC pitch (Need &middot; Approach &middot; Benefit &middot; Competition). It fuses heat-strain sensing (skin temperature and heart rate) with gas sensing (carbon monoxide, hydrogen sulfide, and combustible vapors), checks every reading against the NIOSH heat framework and standard gas-exposure thresholds, and escalates from a vibration alert to a full vibration/LED/buzzer alarm with a Bluetooth Low Energy notification to the control-room dashboard &mdash; sealed in an IP65-rated housing built for engine-room heat and oil.</p>
-          <div class="plc-meta">
-            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">APA 7 report + NABC pitch deck &amp; script</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Sensing</span><span class="plc-meta-value">Heat-strain (skin temp + heart rate) &amp; gas (CO, H&#8322;S, combustible vapors)</span></div>
-            <div class="plc-meta-item"><span class="plc-meta-label">Benchmarked against</span><span class="plc-meta-value">Fixed gas-monitoring systems &amp; the Honeywell BW Ultra</span></div>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Technical writing</span><span class="chip">APA 7</span><span class="chip">NABC framework</span><span class="chip">Embedded sensing</span><span class="chip">IP65 design</span>
+          <div class="plc-body">
+            <div class="plc-text">
+              <p>A wrist-worn safety concept for the engineers and oilers standing watch in a ship's engine room, developed as an APA&nbsp;7 technical report and a NABC pitch (Need &middot; Approach &middot; Benefit &middot; Competition). The need is real: roughly 350 seafarers and shore workers have died from enclosed-space asphyxiation since 1996, 70 of those in just the last three years, and about 95% of fatal ferry incidents happen on smaller domestic-route vessels that don't carry the fixed monitoring larger ships already have. SentryBand fuses heat-strain sensing (skin temperature and heart rate) with gas sensing (carbon monoxide, hydrogen sulfide, and combustible vapors) on an ESP32 microcontroller, checks every reading against the NIOSH heat framework and standard gas-exposure thresholds, and escalates from a vibration alert to a full vibration/LED/buzzer alarm with a Bluetooth Low Energy notification to the control-room dashboard &mdash; sealed in an IP65-rated housing, running a full multi-hour watch on a rechargeable Li-ion battery.</p>
+              <div class="plc-meta">
+                <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">APA 7 report + NABC pitch deck &amp; script</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Sensing</span><span class="plc-meta-value">Heat-strain (skin temp + heart rate) &amp; gas (CO, H&#8322;S, combustible vapors) on an ESP32</span></div>
+                <div class="plc-meta-item"><span class="plc-meta-label">Benchmarked against</span><span class="plc-meta-value">Fixed gas-monitoring systems &amp; the Honeywell BW Ultra</span></div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Technical writing</span><span class="chip">APA 7</span><span class="chip">NABC framework</span><span class="chip">Embedded sensing</span><span class="chip">IP65 design</span>
+              </div>
+            </div>
+            <figure class="plc-figure">
+              <img src="images/sentryband-anatomy-infographic.jpg" alt="SentryBand component diagram: MEMS temperature/heart-rate sensor, multi-gas sensor array, ESP32-based microcontroller and wireless module, local alert actuators, and a rechargeable battery in an IP65 housing" loading="lazy">
+              <figcaption>Component diagram from the technical report</figcaption>
+            </figure>
           </div>
         </div>
         <div class="proj-list-card">
@@ -266,6 +278,141 @@
             <span class="chip">Systems thinking</span><span class="chip">Communication</span><span class="chip">Video production</span>
           </div>
         </div>
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">CM011 &mdash; Special Topics in General Chemistry</span>
+          </div>
+          <h3>Semiconductor Fabrication Chemistry</h3>
+          <p>A Module 3 technical presentation tracing chip manufacturing back to the chemistry underneath it: photolithography, doping, and etching, the three chemical operations repeated 30&ndash;100+ times to build a single wafer. Worked through the Rayleigh criterion to show why EUV's shorter wavelength (13.5&nbsp;nm vs. 193&nbsp;nm) prints roughly 3.5&times; smaller features, and the implant-dose equation to show why ion implantation's independently-tunable dose and depth displaced diffusion doping for critical junctions. Closes on the environmental cost &mdash; fabrication runs about 185M tons CO&#8322;-equivalent a year, and roughly half of per-wafer chemical use is wet processing &mdash; and why that chemistry sets a hard ceiling on chip cost, performance, and where fabs can be built.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">18-slide technical presentation</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Worked calculations</span><span class="plc-meta-value">Rayleigh criterion (CD = k&#8321;&middot;&lambda;/NA) &amp; implant dose (Q = It/qA)</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Covers</span><span class="plc-meta-value">Photolithography &middot; doping &middot; wet &amp; dry etching &middot; environmental cost</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Semiconductor chemistry</span><span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span><span class="chip">Technical presentation</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-cta">
+        <div>Open to work in embedded safety and computer engineering.</div>
+        <a class="get-touch" href="#contact" data-view="contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+
+    <!-- ============ COURSEWORK PAGE ============ -->
+    <div class="view" id="view-coursework" hidden>
+      <div class="page-head">
+        <div class="eyebrow">Coursework</div>
+        <h1 class="page-title">1st year, term 1Q2627 &mdash; six courses.</h1>
+        <p class="page-sub">What each one covers, and what it's already turned into.</p>
+      </div>
+      <div class="proj-list">
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">MATH166 &mdash; College Trigonometry with Solid Mensuration</span>
+          </div>
+          <h3>Fundamentals of Trigonometry</h3>
+          <p>Course Outcome 1 starts from angles and angular measure, then builds the six trigonometric functions (sin, cos, tan, cot, sec, csc) as ratios of a right triangle's sides, and the fundamental identities that connect them. Worked problems run from a skateboard ramp's height and length to elevation/depression word problems &mdash; the kind of geometry that shows up again later in solid mensuration.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Textbook</span><span class="plc-meta-value">Trigonometry, 11e &mdash; R. Aufmann</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Status</span><span class="plc-meta-value">ALEKS-certified, 100%</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Angular measure</span><span class="chip">Six trig functions</span><span class="chip">Fundamental identities</span><span class="chip">Elevation &amp; depression</span>
+          </div>
+          <a class="cw-more" href="#credentials" data-view="credentials">See the ALEKS certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">CPE101-4 &mdash; Computer Engineering as a Discipline</span>
+          </div>
+          <h3>What the field actually is, before the math starts</h3>
+          <p>An orientation course to what computer engineers do and how the degree is structured, before the harder math and hardware courses start. The deliverable so far reframes ordinary first-year questions &mdash; class schedules, graduation planning, where to get advice &mdash; as the engineering problems they secretly are.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Scripted interview-style video essay</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Status</span><span class="plc-meta-value">Submitted</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Systems thinking</span><span class="chip">Feedback loops</span><span class="chip">Critical path</span>
+          </div>
+          <a class="cw-more" href="#projects" data-view="projects">See the video essay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">CPE111-4 &mdash; Discrete Mathematics for CpE</span>
+          </div>
+          <h3>The proof-and-structure layer under every algorithm</h3>
+          <p>Logic, sets, relations, and graphs &mdash; the formal structures that everything from the Number Systems calculator's stack logic to later data-structures courses ends up resting on. Working reference is Rosen's <em>Discrete Mathematics and Its Applications</em>, 8th edition.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Reference</span><span class="plc-meta-value">Rosen, Discrete Mathematics and Its Applications, 8e</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Status</span><span class="plc-meta-value">In progress</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Logic</span><span class="chip">Sets &amp; relations</span><span class="chip">Graphs</span><span class="chip">Proof techniques</span>
+          </div>
+        </div>
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">CM011 / CM011L &mdash; Special Topics in General Chemistry</span>
+          </div>
+          <h3>The chemistry underneath the chips</h3>
+          <p>General chemistry paired with a lab, angled toward chip fabrication for CpE majors: photolithography, doping, and etching as the three chemical operations repeated dozens of times to build one wafer. The Module 3 presentation on semiconductor fabrication chemistry came out of this course.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Lecture + lab, technical presentation</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Status</span><span class="plc-meta-value">Submitted</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Photolithography</span><span class="chip">Doping</span><span class="chip">Etching</span>
+          </div>
+          <a class="cw-more" href="#projects" data-view="projects">See the fabrication chemistry project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">CPE102L-4 &mdash; Programming Logic &amp; Design</span>
+          </div>
+          <h3>From flowchart to working program</h3>
+          <p>Flowgorithm first, to get the logic right before syntax gets in the way, then a Python port. The Number Systems &amp; Notations Calculator &mdash; postfix/prefix evaluation, base conversion, input validation &mdash; is this course's deliverable so far.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">Flowgorithm &rarr; Python, video walkthrough</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Status</span><span class="plc-meta-value">Submitted</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Flowgorithm</span><span class="chip">Python</span><span class="chip">Stacks</span><span class="chip">Base conversion</span>
+          </div>
+          <a class="cw-more" href="#projects" data-view="projects">See the calculator project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+        <div class="proj-list-card">
+          <div class="plc-top">
+            <span class="eyebrow">GED106 &mdash; Purposive Communication</span>
+          </div>
+          <h3>Writing for an audience that isn't a professor</h3>
+          <p>APA 7 technical report structure and audience-appropriate writing, applied to a real innovation project instead of a generic prompt. Turned into the SentryBand technical report and its NABC (Need &middot; Approach &middot; Benefit &middot; Competition) pitch.</p>
+          <div class="plc-meta">
+            <div class="plc-meta-item"><span class="plc-meta-label">Format</span><span class="plc-meta-value">APA 7 report + NABC pitch deck &amp; script</span></div>
+            <div class="plc-meta-item"><span class="plc-meta-label">Status</span><span class="plc-meta-value">Submitted</span></div>
+          </div>
+          <div class="chip-row">
+            <span class="chip">APA 7</span><span class="chip">Technical writing</span><span class="chip">NABC framework</span>
+          </div>
+          <a class="cw-more" href="#projects" data-view="projects">See the SentryBand report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+      <div class="page-cta">
+        <div>Full project write-ups are one click away.</div>
+        <a class="get-touch" href="#projects" data-view="projects">See the projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+
+    <!-- ============ PERSONAL JOURNEY PAGE ============ -->
+    <div class="view" id="view-journey" hidden>
+      <div class="page-head">
+        <div class="eyebrow">Personal Journey</div>
+        <h1 class="page-title">From engine room to CpE classroom.</h1>
+        <p class="page-sub">Studying on a 4-on/8-off watch schedule, with whatever bandwidth a ship at sea can spare.</p>
+      </div>
+      <div class="journey-page-body">
+        <p>PLACEHOLDER &mdash; the original narrative text got lost when this session's context was compacted, and I don't want to reconstruct your own personal story from memory instead of your actual words. Please re-paste the Personal Journey narrative you sent earlier (the 4-on/8-off watch rotation, debugging over low-bandwidth satellite internet, learning fundamentals without internet crutches, becoming &ldquo;a deliberate engineer&rdquo;) and I'll drop it in here, condensed the way you okayed before.</p>
       </div>
       <div class="page-cta">
         <div>Open to work in embedded safety and computer engineering.</div>
@@ -599,12 +746,13 @@
       <div class="about-page">
         <img src="images/marpel-mar-bangcaya.jpg" alt="Marpel Mar Bangcaya" class="about-page-photo">
         <div class="about-page-text">
-          <p>I'm Marpel &mdash; a BS Marine Engineering graduate now serving as 4th Engineer aboard an international vessel, and studying BS Computer Engineering fully online in whatever hours the watch schedule leaves free.</p>
+          <p>I'm Marpel &mdash; a BS Marine Engineering graduate now serving as 4th Engineer aboard an international vessel, and studying BS Computer Engineering fully online at Mapúa University in whatever hours the watch schedule leaves free.</p>
           <p>Marine engineering taught me to think in safety margins and failure modes. Computer engineering is where I'm learning to build the embedded tools that watch over the people still standing watch &mdash; starting with SentryBand, a wearable heat-strain and toxic-gas monitor for the engine room.</p>
           <p>Most of the coursework happens in whatever connectivity the ship allows between watches &mdash; Flowgorithm and Python for the logic-and-design work, GitHub and Claude Code to keep the workflow moving from one port to the next.</p>
+          <p>The sea time backs up the marine-engineering side of that: bulk carriers and container ships, worldwide trade, working up from Engine Cadet to Oiler across contracts that have run through the Suez Canal, Singapore, Istanbul, and a string of Chinese ports since 2022. It's MARINA/STCW-certified &mdash; Basic Training, Advanced Fire Fighting, Medical First Aid, Survival Craft &amp; Rescue Boat, Ship Security Awareness, and Ratings Forming Part of an Engineering Watch.</p>
           <div class="chip-row">
             <span class="chip">Marine Engineering, completed</span>
-            <span class="chip">Fully online CpE student</span>
+            <span class="chip">Fully online CpE student, Mapúa University</span>
             <span class="chip">4th Engineer, onboard</span>
           </div>
         </div>
@@ -618,7 +766,7 @@
         <div class="about-fact">
           <span class="about-fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 7.5a1 1 0 0 1 1-1H9l1.6 2h9a1 1 0 0 1 1 1v8.5a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1V7.5Z"/></svg></span>
           <span class="about-fact-label">Now studying</span>
-          <span class="about-fact-value">BS Computer Engineering, fully online</span>
+          <span class="about-fact-value">BS Computer Engineering, Mapúa University &mdash; fully online</span>
         </div>
         <div class="about-fact">
           <span class="about-fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17.5 9 11l4 4 8-9M21 6v5M21 6h-5"/></svg></span>
@@ -629,6 +777,11 @@
           <span class="about-fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.5" r="4.3"/><path d="m8.5 12-1.8 8 5.3-2.6 5.3 2.6-1.8-8"/></svg></span>
           <span class="about-fact-label">Building now</span>
           <span class="about-fact-value">SentryBand, wearable safety monitor</span>
+        </div>
+        <div class="about-fact">
+          <span class="about-fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg></span>
+          <span class="about-fact-label">Sea service</span>
+          <span class="about-fact-value">Bulk carriers &amp; container ships, worldwide trade, since 2022</span>
         </div>
       </div>
     </div>
