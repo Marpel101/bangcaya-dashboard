@@ -343,3 +343,82 @@
     });
   });
 })();
+
+/* PART 6: project-figure lightbox. Progressively enhances every image
+   inside a .plc-figure (the Projects page diagrams/screenshots) into a
+   zoomable trigger: clicking it -- or pressing Enter/Space once it has
+   focus -- opens that image full-size in the shared #imgbox <dialog>
+   instead of a new tab, so a visitor never leaves the page to see the
+   whole document. Each image gets wrapped in a real <button>, so it's
+   keyboard- and screen-reader-operable with no extra ARIA bookkeeping;
+   the image's own alt text becomes the button's accessible name. Without
+   JS the images still render exactly as before, just not zoomable. */
+(function(){
+  var dlg = document.getElementById('imgbox');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var dlgImg = document.getElementById('imgboxImg');
+  var dlgCaption = document.getElementById('imgboxCaption');
+  var closeBtn = document.getElementById('imgboxClose');
+  var lastTrigger = null;
+
+  function openImgbox(img, triggerEl){
+    lastTrigger = triggerEl || img;
+    dlgImg.src = img.currentSrc || img.src;
+    dlgImg.alt = img.alt || '';
+    var fig = img.closest('figure');
+    var captionEl = fig ? fig.querySelector('figcaption') : null;
+    dlgCaption.textContent = captionEl ? captionEl.textContent : (img.alt || '');
+    dlg.showModal();
+    document.documentElement.style.overflow = 'hidden';
+    requestAnimationFrame(function(){ dlg.classList.add('is-open'); });
+  }
+
+  function closeImgbox(){
+    if (!dlg.open) return;
+    dlg.classList.remove('is-open');
+    var done = false;
+    function finish(){
+      if (done) return;
+      done = true;
+      if (dlg.open) dlg.close();
+      document.documentElement.style.overflow = '';
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+    }
+    dlg.addEventListener('transitionend', finish, { once: true });
+    setTimeout(finish, 260);
+  }
+
+  // Escape triggers <dialog>'s native 'cancel' event, which closes it
+  // immediately -- intercept that so Escape gets the same fade-out as
+  // every other way of closing it.
+  dlg.addEventListener('cancel', function(e){
+    e.preventDefault();
+    closeImgbox();
+  });
+
+  // a click that lands on the dialog element itself (never a descendant,
+  // since the image/caption/close-button all stop the event reaching it)
+  // is by definition a click on the dimmed backdrop area.
+  dlg.addEventListener('click', function(e){
+    if (e.target === dlg) closeImgbox();
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeImgbox);
+
+  var figureImages = document.querySelectorAll('.plc-figure img');
+  figureImages.forEach(function(img){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'imgzoom-trigger';
+    img.parentNode.insertBefore(btn, img);
+    btn.appendChild(img);
+
+    var badge = document.createElement('span');
+    badge.className = 'imgzoom-badge';
+    badge.setAttribute('aria-hidden', 'true');
+    badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M21 15v6h-6M3 15v6h6"/></svg>';
+    btn.appendChild(badge);
+
+    btn.addEventListener('click', function(){ openImgbox(img, btn); });
+  });
+})();

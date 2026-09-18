@@ -375,6 +375,45 @@
      set the whole card's height. */
   .plc-figure img{display:block;width:100%;height:auto;max-height:300px;object-fit:contain;}
   .plc-figure figcaption{font-size:10.5px;color:var(--ink-mute);padding:6px 8px;line-height:1.4;}
+  /* script.js PART 6 wraps every .plc-figure img in one of these buttons so it
+     opens full-size in the #imgbox dialog instead of a new tab. Reset all the
+     button chrome so it reads as the image itself, not a button that
+     happens to contain one. */
+  .plc-figure .imgzoom-trigger{display:block;width:100%;padding:0;margin:0;border:none;background:none;font:inherit;cursor:zoom-in;position:relative;-webkit-tap-highlight-color:transparent;}
+  .plc-figure .imgzoom-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:4px;}
+  .plc-figure .imgzoom-trigger img{transition:transform .35s cubic-bezier(.2,.7,.2,1);}
+  .plc-figure .imgzoom-trigger:hover img,
+  .plc-figure .imgzoom-trigger:focus-visible img{transform:scale(1.035);}
+  /* small expand-icon badge -- the click-to-enlarge affordance. Hidden until
+     hover/focus so it doesn't clutter the diagrams themselves; always shown
+     on touch devices, which have no hover state to reveal it with. */
+  .imgzoom-badge{position:absolute;top:8px;right:8px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(13,17,32,.55);backdrop-filter:blur(3px);opacity:0;transform:translateY(-3px);transition:opacity .2s ease,transform .2s ease;pointer-events:none;}
+  .imgzoom-badge svg{width:13px;height:13px;stroke:#fff;}
+  .plc-figure .imgzoom-trigger:hover .imgzoom-badge,
+  .plc-figure .imgzoom-trigger:focus-visible .imgzoom-badge{opacity:1;transform:translateY(0);}
+  @media (hover:none){.imgzoom-badge{opacity:1;}}
+  @media (prefers-reduced-motion:reduce){.plc-figure .imgzoom-trigger img{transition:none;}}
+
+  /* full-size image viewer -- one <dialog id="imgbox"> shared by every
+     .plc-figure trigger above (see index.html + script.js PART 6). Using
+     <dialog>.showModal() gives native focus-trapping, top-layer stacking
+     and Escape-to-close for free; the .is-open class below just adds a
+     fade/scale transition on top of that. */
+  dialog.imgbox{border:none;padding:0;margin:auto;background:var(--panel);color:var(--ink);max-width:min(94vw,1200px);width:fit-content;max-height:92vh;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(10,11,15,.55),0 4px 18px rgba(10,11,15,.2);flex-direction:column;opacity:0;transform:scale(.96) translateY(10px);transition:opacity .22s ease,transform .22s ease;}
+  dialog.imgbox:not([open]){display:none;}
+  dialog.imgbox[open]{display:flex;}
+  dialog.imgbox.is-open{opacity:1;transform:scale(1) translateY(0);}
+  dialog.imgbox::backdrop{background:rgba(8,9,14,.72);backdrop-filter:blur(8px) saturate(1.05);opacity:0;transition:opacity .22s ease;}
+  dialog.imgbox.is-open::backdrop{opacity:1;}
+  @media (prefers-reduced-motion:reduce){dialog.imgbox,dialog.imgbox::backdrop{transition:none;}}
+  .imgbox-img{display:block;width:auto;height:auto;max-width:min(94vw,1200px);max-height:calc(92vh - 50px);object-fit:contain;background:var(--chip-bg);margin:0 auto;}
+  .imgbox-caption{margin:0;padding:12px 18px;font-size:12.5px;color:var(--ink-soft);line-height:1.5;border-top:1px solid var(--panel-border);background:var(--panel);}
+  .imgbox-caption:empty{display:none;}
+  .imgbox-close{position:absolute;top:10px;right:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;border-radius:9px;background:rgba(13,17,32,.55);color:#fff;cursor:pointer;transition:background .15s ease;}
+  .imgbox-close svg{width:16px;height:16px;}
+  .imgbox-close:hover{background:rgba(13,17,32,.78);}
+  .imgbox-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  @media (max-width:560px){dialog.imgbox{max-width:100vw;max-height:100vh;border-radius:0;}.imgbox-img{max-width:100vw;max-height:calc(100vh - 50px);}}
   /* every child inside .plc-text (.plc-intro, .plc-stages, .plc-meta) is
      already capped at a 640px reading measure, but .plc-text itself was
      only flex:1 with no cap of its own -- on a wide card that let it grow

@@ -352,9 +352,6 @@
               <div class="chip-row">
                 <span class="chip">Systems thinking</span><span class="chip">Communication</span><span class="chip">Video production</span>
               </div>
-              <div class="plc-links">
-                <a class="cw-more" href="reports/college-experience-coursework.pdf" target="_blank" rel="noopener">View the coursework submission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-              </div>
             </div>
             <div class="plc-figure-row">
               <figure class="plc-figure">
@@ -387,7 +384,6 @@
               </div>
               <div class="plc-links">
                 <a class="cw-more" href="reports/cm011-technical-report.pdf" target="_blank" rel="noopener">View the technical report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-                <a class="cw-more" href="reports/cm011-presentation.pdf" target="_blank" rel="noopener">View the presentation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
               </div>
             </div>
             <div class="plc-figure-row">
@@ -975,6 +971,17 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7"/></svg>
   <span id="copyToastText">Copied</span>
 </div>
+
+<!-- full-size image viewer -- one shared <dialog> reused for every clickable figure
+     (project-card diagrams, credential thumbnails, etc). showModal() gives native
+     focus-trapping and Escape-to-close for free; see script.js PART 6. -->
+<dialog class="imgbox" id="imgbox" aria-labelledby="imgboxCaption">
+  <button type="button" class="imgbox-close" id="imgboxClose" aria-label="Close image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <img class="imgbox-img" id="imgboxImg" src="" alt="">
+  <p class="imgbox-caption" id="imgboxCaption"></p>
+</dialog>
 
 <script src="script.js" defer></script>
 
