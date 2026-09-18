@@ -421,27 +421,28 @@
      center gets scaled up as it passes through (script.js watches the
      track's position and toggles .is-active), the way a photo carousel's
      "focused" item pops forward */
-  .about-journey-row{display:flex;gap:30px;align-items:flex-start;}
+  .about-journey-row{display:flex;gap:30px;align-items:center;}
   .about-journey-text{flex:1;min-width:0;}
   .about-journey-text p{color:var(--ink-soft);font-size:14px;line-height:1.72;margin:0 0 14px;}
   .about-journey-text p:last-child{margin-bottom:0;}
 
   /* sized up so the focused photo reads clearly rather than as a real
      showcase photo, not a thumbnail -- text column gives up some width for
-     it (flex:1 above just absorbs that). a nudge down from the very top
-     (not full top-aligned, not centered against the whole tall text block
-     either -- that pulled it too far down) so it sits in the upper portion
-     of the row. width scales with the viewport between the breakpoint and
-     a comfortable desktop width instead of staying a rigid 560px the whole
-     time -- that rigid width squeezed the text column down to just a few
-     words per line right above the breakpoint, so here the widget gives up
-     a little of its own width first and only reaches the full 560px once
-     there's room to spare. each card carries its own caption directly
-     under its own photo (instead of one shared caption line below the
-     whole strip) so the label always stays correctly aligned under the
-     picture it names, card by card, as the strip slides and the active one
-     changes. */
-  .journey-photo-coverflow{flex:none;width:clamp(460px,36vw,560px);margin-top:64px;}
+     it (flex:1 above just absorbs that). now that the copy beside it is
+     short (two tight paragraphs, not four), the widget's own height is
+     close to the text block's, so a plain vertical center on the row
+     lines the two up nicely without the widget hanging noticeably lower
+     than the text -- no manual top offset needed any more. width scales
+     with the viewport between the breakpoint and a comfortable desktop
+     width instead of staying a rigid 560px the whole time -- that rigid
+     width squeezed the text column down to just a few words per line
+     right above the breakpoint, so here the widget gives up a little of
+     its own width first and only reaches the full 560px once there's room
+     to spare. each card carries its own caption directly under its own
+     photo (instead of one shared caption line below the whole strip) so
+     the label always stays correctly aligned under the picture it names,
+     card by card, as the strip slides and the active one changes. */
+  .journey-photo-coverflow{flex:none;width:clamp(460px,36vw,560px);}
   .jpc-mask{
     position:relative;width:100%;height:380px;overflow:hidden;display:flex;align-items:flex-end;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
